@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock title %}Login
+
+{% block content %}
+
+<div class="login-container">
+  <h1>Login</h1>
+
+
+  {% if messages %}
+
+  <ul class="messages">
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      
+  {% endfor %}
+
+
+  {% endif %}  
+
+  <h6>{{notify}}<h6>
+    
+<form action="{% url 'login' %}" method="post">
+
+  {% csrf_token %}
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="submit">Login</button>
+  </form>
+  <div> <a href={% url 'signUp' %}>Be a member..?</a> </div>
+</div>
+
+{% endblock content %}
+
