@@ -1,17 +1,18 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from school_management.models import Student
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as loginn, logout
+from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
 
     data = Student.objects.all()
+    student_count = Student.objects.count() 
 
     return render(request, 'index.html', {
-        'data': data
+        'data': data, 'count': student_count
     })
 
 
@@ -33,7 +34,7 @@ def signUp(request):
 
 
 
-def login(request):
+def singIn(request):
     if request.method == 'POST':
 
         username = request.POST.get('username')
@@ -48,13 +49,13 @@ def login(request):
         
         if user is not None:
             
-            loginn(request, user)
+            login(request, user)
 
             return redirect('index')
 
         else:
 
-            return render(request, 'login1.html')
+            return redirect('login')
 
     return render(request, 'login1.html')
 
@@ -63,6 +64,7 @@ def login(request):
 @login_required(login_url='login')
 def insert(request):
 
+    
     if request.method == 'POST':
 
         name = request.POST.get('name')
@@ -71,8 +73,8 @@ def insert(request):
         age = request.POST.get('age')
         gender = request.POST.get('gender')
         studentID = request.POST.get('studentId')
-
-        std = Student(
+        
+        inserT = Student(
             name=name, 
             email=email, 
             phone=phone, 
@@ -81,54 +83,45 @@ def insert(request):
             studentID=studentID
         )
         
-        std.save()
+        inserT.save()
         return redirect('index')  
+        
+        messages.error(request, 'Data added successfully!')        
 
-        return render(request, 'index.html', {'create':'Data added successfully!'})
+        return render(request, 'index.html')
 
 
     return render(request, 'insert.html')
 
 
 @login_required(login_url='login')
-def edit(request,id):
+def edit(request, id):
+
+    student = get_object_or_404(Student, id=id)
 
     if request.method == 'POST':
+        student.studentID = request.POST['studentId']
+        student.name = request.POST['name']
+        student.age = request.POST['age']
+        student.gender = request.POST['gender']
+        student.phone = request.POST['phone']
+        student.email = request.POST['email']
+        student.save()
+        return redirect('index')  # Assuming 'index' is the name of your homepage view
 
-        name =  request.POST('name')
-        email = request.POST('email')
-        phone = request.POST('phone')
-        age =   request.POST('age')
-        gender =request.POST('gender')
-        studentID = request.POST('studentId')
-
-        editData = Student.objects.get(id=id)
-        editData.name
-        editData.email
-        editData.phone
-        editData.age
-        editData.gender
-        editData.studentID
-        editData.save()
-
-        return redirect('index')
-
-    log_data = Student.objects.get(id=id)
-    contxt = {'log_data': log_data}
-
-    return render(request,'edit.html', contxt)   
-
-    return render(request, 'edit.html')
+    return render(request, 'edit.html', {'student': student})
 
 
 
 @login_required(login_url='login')
+
 def remove(request,id):
 
-    rm = Student.objects.get(id=id)
-    rm.delete()  
+        rm = Student.objects.get(id=id)
+        rm.delete()
 
-    return render(request, 'remove.html')
+
+        return redirect('index')  
 
 
 def logout_user(request):

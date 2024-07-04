@@ -1,44 +1,40 @@
 {% extends 'base.html' %}
 
-
 <title> {% block title %} Edit {% endblock title %}</title>
-
 
 {% block content %}
 
-
 <div class="container mt-4">
-  <div class="row">
-      <!-- Form to insert student data -->
-      <div class="col-lg-4 col-md-6 col-sm-12">
-          <h2 class="text-center text-white bg-dark p-3">Insert Student Data</h2>
-          <form method="post" action="{% url 'insert' %}">
-              {% csrf_token %}
-              <div class="form-group">
-                  <input type="text" class="form-control" id="studentId" name="studentId" placeholder="Enter student ID">
-              </div>
-              <div class="form-group">
-                  <input type="text" class="form-control" id="studentName" name="name" placeholder="Enter name">
-              </div>
-              <div class="form-group">
-                  <input type="number" class="form-control" id="studentAge" name="age" placeholder="Enter age">
-              </div>
-              <div class="form-group">
-                  <select class="form-control" id="studentGender" name="gender">
-                      <option>Male</option>
-                      <option>Female</option>
-                      <option>Other</option>
-                  </select>
-              </div>
-              <div class="form-group">
-                  <input type="tel" class="form-control" id="studentPhone" name="phone" placeholder="Enter phone number">
-              </div>
-              <div class="form-group">
-                  <input type="email" class="form-control" id="studentEmail" name="email" placeholder="Enter Email">
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-      </div>
-
-
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <h2 class="text-center text-white bg-dark p-3">Edit Student Data</h2>
+            <form method="post" action="#">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" id="studentId" name="studentId" value="{{ student.studentID }}" placeholder="Enter student ID">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="studentName" name="name" value="{{ student.name }}" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" id="studentAge" name="age" value="{{ student.age }}" placeholder="Enter age">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="studentGender" name="gender">
+                        <option {% if student.gender == 'Male' %}selected{% endif %}>Male</option>
+                        <option {% if student.gender == 'Female' %}selected{% endif %}>Female</option>
+                        <option {% if student.gender == 'Other' %}selected{% endif %}>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="tel" class="form-control" id="studentPhone" name="phone" value="{{ student.phone }}" placeholder="Enter phone number">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="studentEmail" name="email" value="{{ student.email }}" placeholder="Enter Email">
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock content %}

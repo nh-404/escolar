@@ -7,7 +7,7 @@ from school_management import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('login', views.login, name='login'),
+    path('login', views.singIn, name='login'),
     path('signup', views.signUp, name='signUp'),
     path('insert', views.insert, name='insert'),
     path('edit/<int:id>/', views.edit, name='edit'),  # Ensure <int:id> is used
