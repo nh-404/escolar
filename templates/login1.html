@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock title %}Login
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <div class="container-md">
+      
+      <a class="navbar-brand" href="{% url 'index' %}">School Management System</a>
+
+          <a class="navbar-brand mt-6" href="{% url 'login' %}">Login</a>
+
+  </div>
+</nav>
+
+<div class="login-container">
+  <h1>Login</h1>
+
+
+  {% if messages %}
+
+  <ul class="messages">
+       {% for message in messages %}
+
+           <li>{{ message }}</li>
+  
+       {% endfor %}
+
+  {% endif %}  
+
+  </ul>
+
+
+  <h6>{{notify}}<h6>
+    
+<form action="{% url 'login' %}" method="post">
+
+  {% csrf_token %}
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="submit">Login</button>
+  </form>
+  <div> <a href={% url 'signUp' %}>Be a member..?</a> </div>
+</div>
+
+{% endblock content %}
+
