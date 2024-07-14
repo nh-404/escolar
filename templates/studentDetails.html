@@ -1,56 +1,18 @@
-      
-        <div class="col-lg-8 col-md-6 col-sm-12 p-2">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Student List</title>
+</head>
+<body>
 
-            <h2 class="text-center text-white bg-dark p-3">Students Details</h2>
-            <h4>Total Student : {{count}}</h4>
-            <div> 
-                <input class="form-control mr-sm-2" type="search" placeholder= "Search.....">
-            </div>
 
-     
-            <table class="table table-responsive mt-4 p-3">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Age</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Remove</th>
-                    </tr>
-                </thead>
+    
 
-                {% if request.user.is_authenticated %}
-
-                <tbody>
-                    {% for db in data %}
-                    <tr>
-                        <th scope="row">{{ db.id }}</th>
-                        <td>{{ db.studentID }}</td>
-                        <td>{{ db.name }}</td>
-                        <td>{{ db.email }}</td>
-                        <td>{{ db.phone }}</td>
-                        <td>{{ db.age }}</td>
-                        <td>{{ db.gender }}</td>
-                        <td>
-                            <a href="{% url 'edit' db.id %}">
-                                <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{% url 'remove' db.id %}">
-                                <button type="button" class="btn btn-outline-danger btn-sm">Remove</button>
-                            </a>
-                        </td>
-                    </tr>
-
-                    {% endfor %}
-                {% endif %}
-
-                </tbody>
-            </table>
-        </div>
- 
+    
+</body>
+</html>
