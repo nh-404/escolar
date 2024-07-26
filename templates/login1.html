@@ -5,14 +5,15 @@
   <link rel="stylesheet" href="static/login.css">
   <title>Login</title>
 </head>
+<!-- __________________________________________________________________________ -->
+
+
 <body>
   
-</body>
-
-
 <div class="login-container">
+
   <h1>Login</h1>
-    
+
 <form action="{% url 'login' %}" method="post">
 
   {% csrf_token %}
@@ -26,7 +27,11 @@
     <button type="submit">Login</button>
   </form>
   <div> <a href={% url 'signUp' %}>Be a member..?</a> </div>
+
 </div>
+
+
+</body>
 </html>
 
 

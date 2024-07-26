@@ -15,6 +15,7 @@ def teacherList(request):
             'teacherCount': teacher_count
         })
 
+
 @login_required(login_url='login')
 def teacherDashboard(request):
 

@@ -73,7 +73,7 @@
     
                 {% if request.user.is_authenticated %}
                 <tbody>
-                    {% for db in data %}
+                    {% for db in studentDB %}
                     <tr>
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>{{ db.studentId }}</td>
