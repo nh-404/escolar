@@ -1,20 +1,16 @@
 {% extends 'base.html' %}
-{% block title %}List{% endblock title %}
+{% block title %}Student List{% endblock title %}
 
 {% block content %}
-
 
 <div class="content">
     <h3>Student Panel</h3>
     <div class="card">
-        
         <div class="stats">
             <div class="stat">
-
                 <div class="col-lg-4 col-md-6 col-sm-12">
-
                     <h2 class="text-center text-white bg-dark p-3">Insert Student Data</h2>
-                    <form method="post" action="{% url 'studentList' %}">
+                    <form method="post" action="{% url 'studentData' %}">
                         {% csrf_token %}
                         <div class="form-group">
                             <input type="text" class="form-control" id="studentId" name="studentId" placeholder="Enter student ID">
@@ -41,18 +37,14 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
-                
-
             </div>
-
         </div>
     </div>
 
     <div class="stat">
-                      
         <div class="col-lg-8 col-md-6 col-sm-12 p-2">
             <h2 class="text-center text-white bg-dark p-3">Students Details</h2>
-            <h4>Total Students: {{ count }}</h4>
+            <h4>Total Students: {{ studentDB.count }}</h4>
             <div>
                 <input class="form-control mr-sm-2" type="search" placeholder="Search...">
             </div>
@@ -70,45 +62,32 @@
                         <th scope="col">Remove</th>
                     </tr>
                 </thead>
-    
-                {% if request.user.is_authenticated %}
                 <tbody>
-                    {% for db in studentDB %}
+                    {% for student in studentDB %}
                     <tr>
-                        <th scope="row">{{ forloop.counter }}</th>
-                        <td>{{ db.studentId }}</td>
-                        <td>{{ db.name }}</td>
-                        <td>{{ db.email }}</td>
-                        <td>{{ db.phone }}</td>
-                        <td>{{ db.age }}</td>
-                        <td>{{ db.gender }}</td>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ student.studentID }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.phone }}</td>
+                        <td>{{ student.age }}</td>
+                        <td>{{ student.gender }}</td>
                         <td>
-                            <a href="{% url 'edit' db.id %}">
+                            <a href="{% url 'edit' student.id %}">
                                 <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
                             </a>
                         </td>
                         <td>
-                            <a href="{% url 'remove' db.id %}">
+                            <a href="{% url 'remove' student.id %}">
                                 <button type="button" class="btn btn-outline-danger btn-sm">Remove</button>
                             </a>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
-                {% endif %}
             </table>
         </div>
     </div>
-    </div>
-    </div>
+</div>
 
-
-
-
-
-
-
-    
 {% endblock content %}
-
-

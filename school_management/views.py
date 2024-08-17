@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from student.models import Student
-from teacher.models import Teacher
+from teachers.models import Teacher
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User

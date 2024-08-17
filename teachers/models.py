@@ -9,7 +9,7 @@ class Teacher(models.Model):
     phone = models.CharField(max_length=15)
     age = models.IntegerField()
     gender = models.CharField(max_length=10)
-    teacherID = models.CharField(max_length=10)
+    teacherID = models.CharField(max_length=10, unique=True)
 
     def __str__(self):
         return self.name

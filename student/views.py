@@ -12,16 +12,15 @@ def studentList(request):
     student_count = Student.objects.count() 
 
     return render(request, 'studentList.html', {
-            'studentDB': studentDB, 'count': student_count
+            'studentDB': studentDB,
+            'count': student_count
         })
 
 
-
-
 @login_required(login_url='login')
-def insert(request):
+def studentData(request):
 
-
+    
     if request.method == 'POST':
 
         name = request.POST.get('name')
@@ -31,22 +30,19 @@ def insert(request):
         gender = request.POST.get('gender')
         studentID = request.POST.get('studentId')
         
-        newStudent = Student(
+        inserT = Student(
             name=name, 
             email=email, 
             phone=phone, 
             age=age, 
             gender=gender, 
-            teacherID=studentID,
+            studentID=studentID
         )
         
-        newStudent.save()
-        return redirect('studentList')
-
+        inserT.save()
+        return redirect('studentList')  
 
     return render(request, 'studentList.html')
- 
-
 
 
 @login_required(login_url='login')
