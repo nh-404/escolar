@@ -1,42 +1,35 @@
 {% extends 'base.html' %}
-
-{% block title %}
-  Home
-{% endblock title %}
-
+      
 {% block content %}
 
-<!-- navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <div class="container-md">
-        
-        <a class="navbar-brand" href="{% url 'index' %}">School Management System</a>
+    <div class="content">
+        <h2>Dashboard</h2>
+        <div class="card">
+            <h3>Statistics</h3>
+            <div class="stats">
+                <div class="stat">
+                    <h4>Total Students</h4>
+                    <p>{{count}}</p>
+                </div>
+                <div class="stat">
+                    <h4>Total Teachers</h4>
+                    <p>{{ teacherCount }}</p>
+                </div>
+                <div class="stat">
+                    <h4>Total Classes</h4>
+                    <p>30</p>
+                </div>
+            </div>
+        </div>
 
-        {% if request.user.is_authenticated %}
-
-            <a class="navbar-brand mt-6" href="{% url 'logout' %}">Logout</a>
-
-            
-        {% else %}
-
-            <a class="navbar-brand mt-6" href="{% url 'login' %}">Login</a>
-
-        {% endif %}
+        <div class="card">
+            <h3>Recent Activity</h3>
+            <ul>
+               
+                <li></li>
+            </ul>
+        </div>
     </div>
-</nav>
 
-<!--Insert section-->
-
-
-<div class="container mt-4">
-    <div class="row">
-        <!-- Form to insert student data -->
-            {% include 'inputData.html' %}
-        <!-- Table to display student details -->
-            {% include 'studentDetails.html' %}
-    
-    </div>
-</div>
-
-{% endblock content %}
+    {% endblock content %}

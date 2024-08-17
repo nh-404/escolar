@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from school_management.models import Student
+from teacher.models import Teacher
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import authenticate, login , logout
@@ -7,13 +8,21 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
-
     data = Student.objects.all()
     student_count = Student.objects.count() 
 
+    teacherDB = Teacher.objects.all()
+    teacher_count = Teacher.objects.count() 
+
+
     return render(request, 'index.html', {
-        'data': data, 'count': student_count
-    })
+
+            'data': data, 
+            'count': student_count, 
+            'teacherDB': teacherDB, 
+            'teacherCount': teacher_count
+        })
+
 
 
 def signUp(request):
@@ -35,6 +44,7 @@ def signUp(request):
 
 
 def singIn(request):
+
     if request.method == 'POST':
 
         username = request.POST.get('username')
@@ -60,11 +70,21 @@ def singIn(request):
     return render(request, 'login1.html')
 
 
+@login_required(login_url='login')
+def studentList(request):
+
+    data = Student.objects.all()
+    student_count = Student.objects.count() 
+
+    return render(request, 'studentList.html', {
+            'data': data, 'count': student_count
+        })
+
 
 @login_required(login_url='login')
 def insert(request):
 
-    
+
     if request.method == 'POST':
 
         name = request.POST.get('name')
@@ -84,14 +104,11 @@ def insert(request):
         )
         
         inserT.save()
-        return redirect('index')  
-        
-        messages.error(request, 'Data added successfully!')        
+        return redirect('studentList')  
 
-        return render(request, 'index.html')
+    return render(request, 'studentList.html')
 
 
-    return render(request, 'insert.html')
 
 
 @login_required(login_url='login')
@@ -107,7 +124,7 @@ def edit(request, id):
         student.phone = request.POST['phone']
         student.email = request.POST['email']
         student.save()
-        return redirect('index')  # Assuming 'index' is the name of your homepage view
+        return redirect('studentList')  # Assuming 'index' is the name of your homepage view
 
     return render(request, 'edit.html', {'student': student})
 
@@ -117,11 +134,11 @@ def edit(request, id):
 
 def remove(request,id):
 
-        rm = Student.objects.get(id=id)
-        rm.delete()
+    rm = Student.objects.get(id=id)
+    rm.delete()
+    return redirect('studentList')  
 
 
-        return redirect('index')  
 
 
 def logout_user(request):
@@ -129,3 +146,15 @@ def logout_user(request):
     logout(request)
 
     return redirect('index')
+
+
+
+
+@login_required(login_url='login')
+def studentDashboard(request):
+
+    return render(request, 'student.html')
+
+
+
+
