@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from teacher.models import Teacher
+from teachers.models import Teacher
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -34,7 +34,7 @@ def teacherData(request):
         gender = request.POST.get('gender')
         teacherID = request.POST.get('teacherId')
         
-        newTeacher = Teacher(
+        newTeacher = Teacher.objects.create(
             name=name, 
             email=email, 
             phone=phone, 
@@ -52,7 +52,7 @@ def teacherData(request):
 
 
 @login_required(login_url='login')
-def teacherEdit(request, id):
+def teacher_Edit(request, id):
 
     teacher = get_object_or_404(Teacher, id=id)
 
@@ -75,8 +75,8 @@ def teacherEdit(request, id):
 
 @login_required(login_url='login')
 
-def remove(request,id):
+def teacher_Remove(request,id):
 
-    rm = Teacher.objects.get(id=id)
-    rm.delete()
+    teacherRm = Teacher.objects.get(id=id)
+    teacherRm.delete()
     return redirect('teacherList')   
