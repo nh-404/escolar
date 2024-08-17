@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+<title>{% block title %}Edit{% endblock title %} </title>
 
-<title> {% block title %} Edit {% endblock title %}</title>
 
 {% block content %}
 
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-8 col-sm-10">
             <h2 class="text-center text-white bg-dark p-3">Edit Student Data</h2>
             <form method="post" action="#">
                 {% csrf_token %}
@@ -37,4 +38,5 @@
         </div>
     </div>
 </div>
+
 {% endblock content %}
