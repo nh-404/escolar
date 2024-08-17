@@ -2,6 +2,7 @@
 {% block title %}Teacher List{% endblock title %}
 
 {% block content %}
+
 <div class="content">
     <h3>Teacher Panel</h3>
     <div class="card">
@@ -72,12 +73,12 @@
                         <td>{{ teacher.age }}</td>
                         <td>{{ teacher.gender }}</td>
                         <td>
-                            <a href="{% url 'edit' teacher.id %}">
+                            <a href="{% url 'teacherEdit' teacher.id %}">
                                 <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
                             </a>
                         </td>
                         <td>
-                            <a href="{% url 'remove' teacher.id %}">
+                            <a href="{% url 'teacherRemove' teacher.id %}">
                                 <button type="button" class="btn btn-outline-danger btn-sm">Remove</button>
                             </a>
                         </td>
@@ -88,4 +89,5 @@
         </div>
     </div>
 </div>
+
 {% endblock content %}
