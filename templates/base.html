@@ -1,60 +1,53 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}{% endblock title %} </title>
+    <title>{% block title %}{% endblock title %}</title>
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="static/index.css">
-
-
-
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <!-- __________________________________________________________________________ -->
   </head>
   <body>
-
     <div class="header">
       <h1>School Management System</h1>
 
       <div class="profile">
-          <span>Welcome, {{ user.username  }}</span>
-          
-          {% if request.user.is_authenticated %}
-              
-               <a href="{% url 'logout' %}">Logout</a>
+        <span>Welcome, {{ user.username }}</span>
 
-          {% else %}
-          
-               <a href="{% url 'login' %}">Login</a>
-             
-          {% endif %}
-         
-
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}">
+          <button type="submit" class="btn btn-danger">Logout</button>
+        </a>
+        {% else %}
+        <a href="{% url 'login' %}">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </a>
+        {% endif %}
       </div>
-  </div>
+    </div>
 
-  <div class="sidebar">
+    <div class="sidebar">
       <a href="{% url 'index' %}">Dashboard</a>
       <a href="{% url 'student' %}">Students</a>
       <a href="{% url 'teacher' %}">Teachers</a>
       <a href="#">Classes</a>
-      <a href="{% url 'studentList' %}">Student List</a>
-      <a href="{% url 'teacherList' %}">Teacher List</a>
+      <a href="{% url 'studentList' %}">Admin (Students)</a>
+      <a href="{% url 'teacherList' %}">Admin (Teachers)</a>
       <a href="#">Exams</a>
       <a href="#">Results</a>
       <a href="#">Settings</a>
-      
-  </div>
+    </div>
 
     {% block content %}
-    
     {% endblock content %}
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
   </body>
 </html>
