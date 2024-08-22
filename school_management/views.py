@@ -53,10 +53,10 @@ def singIn(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        try:
-            user = User.objects.get(username=username)
-        except:
-             messages.error(request, 'Invalid username or password')
+        # # try:    
+        # user = User.objects.get(username=username)
+        # # except:
+        # #      messages.error(request, 'Invalid username or password')
         
         user = authenticate(request, username=username, password=password)
         
