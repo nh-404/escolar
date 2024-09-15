@@ -17,7 +17,7 @@ def index(request):
     teacher_count = Teacher.objects.count() 
 
 
-    return render(request, 'index.html', {
+    return render(request, 'funtional/index.html', {
 
             'studentDB': studentDB, 
             'count': student_count, 
@@ -39,10 +39,22 @@ def signUp(request):
         newUser = User.objects.create_user(username=username, email=email, password=password)
         newUser.save()
 
-        return render(request,'login1.html',{'notify':'Account created successfully'})  
+        return render(request,'auth/login1.html',{'notify':'Account created successfully'})  
 
 
-    return render(request, 'signup1.html')
+    return render(request, 'auth/signup1.html')
+
+    # if request.method == 'POST':
+    #     email = request.POST['email']
+    #     password = request.POST['password']
+    #     role = request.POST['role']
+    #     student_id = request.POST.get('student_id', None)
+
+    #     user = User.objects.create_user(email=email, password=password, role=role, student_id=student_id)
+    #     user.save()
+    #     return redirect('login')
+
+    # return render(request, 'auth/signup.html')
 
 
 
@@ -70,10 +82,32 @@ def singIn(request):
 
             return redirect('login')
 
-    return render(request, 'login1.html')
+    return render(request, 'auth/login.html')
 
+# def singIn(request):
 
+#     if request.method == 'POST':
+#         email = request.POST['email']
+#         password = request.POST['password']
+#         role = request.POST['role']
+#         student_id = request.POST.get('student_id', None)
 
+#         user = authenticate(request, email=email, password=password)
+
+#         if user is not None:
+#             if user.role == 'student' and user.student_id == student_id:
+#                 login(request, user)
+#                 return redirect('student_dashboard')
+#             elif user.role == 'teacher':
+#                 # Seller-specific logic goes here (if applicable)
+#                 login(request, user)
+#                 return redirect('seller_dashboard')
+#             else:
+#                 return render(request, 'login1.html', {'error': 'Invalid role or additional info'})
+#         else:
+#             return render(request, 'login1.html', {'error': 'Invalid credentials'})
+
+#     return render(request, 'login1.html')
 
 def logout_user(request):
 

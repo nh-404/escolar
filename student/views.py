@@ -11,7 +11,7 @@ def studentList(request):
     studentDB = Student.objects.all()
     student_count = Student.objects.count() 
 
-    return render(request, 'studentList.html', {
+    return render(request, 'student/studentList.html', {
             'studentDB': studentDB,
             'count': student_count
         })
@@ -42,7 +42,7 @@ def studentData(request):
         inserT.save()
         return redirect('studentList')  
 
-    return render(request, 'studentList.html')
+    return render(request, 'student/studentList.html')
 
 
 @login_required(login_url='login')
@@ -60,7 +60,7 @@ def edit(request, id):
         student.save()
         return redirect('studentList')  # Assuming 'index' is the name of your homepage view
 
-    return render(request, 'edit.html', {'student': student})
+    return render(request, 'funtional/edit.html', {'student': student})
 
 
 
@@ -77,7 +77,7 @@ def remove(request,id):
 @login_required(login_url='login')
 def studentDashboard(request):
 
-    return render(request, 'student.html')
+    return render(request, 'student/student.html')
 
 
 

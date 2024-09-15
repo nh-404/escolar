@@ -1,4 +1,4 @@
-#!/home/nh-404/Prgeamming/Backend/Django/School_Management_System/venv/bin/python3
+#!/home/nh-404/Prgeamming/Backend/Django/School_Management_System/venv/bin/python3.12
 # -*- coding: utf-8 -*-
 import re
 import sys

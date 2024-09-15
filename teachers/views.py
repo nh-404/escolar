@@ -10,7 +10,7 @@ def teacherList(request):
     teacher_count = Teacher.objects.count() 
 
 
-    return render(request, 'teacherList.html', {
+    return render(request, 'teacher/teacherList.html', {
             'teacherDB': teacherDB, 
             'teacherCount': teacher_count
         })
@@ -18,7 +18,7 @@ def teacherList(request):
 @login_required(login_url='login')
 def teacherDashboard(request):
 
-    return render(request, 'teacher.html')
+    return render(request, 'teacher/teacher.html')
 
 
 
@@ -47,7 +47,7 @@ def teacherData(request):
         return redirect('teacherList')
 
 
-    return render(request, 'teacherList.html')
+    return render(request, 'teacher/teacherList.html')
  
 
 
@@ -69,7 +69,7 @@ def teacher_Edit(request, id):
         return redirect('teacherList')  # Assuming 'index' is the name of your homepage view
 
 
-    return render(request, 'teacheredit.html', {'teacher': teacher})
+    return render(request, 'teacher/teacheredit.html', {'teacher': teacher})
 
 
 

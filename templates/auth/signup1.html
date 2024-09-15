@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="static/signup.css">
+  <title>SignUp</title>
+</head>
+
+<!-- __________________________________________________________________________ -->
+
+<body>
+  
+
+<div class="login-container">
+  
+  <h1>SignUp</h1>
+
+  <h4>{{ error1 }}</h4>
+
+  <form action="{% url 'signUp' %}" method="post">
+    {% csrf_token %}
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" required>
+      
+      <label for="password">Password:</label>
+      <input type="password" name="password" required>
+      
+      <label for="role">Role:</label>
+      <select name="role">
+          <option value="student">Student</option>
+          <option value="teacher">Seller</option>
+      </select>
+      
+      <label for="student_id">Student ID (for Students):</label>
+      <input type="text" name="student_id">
+  
+      <button type="submit">Sign Up</button>
+  </form>
+  
+</div>
+
+
+</body>
+</html>

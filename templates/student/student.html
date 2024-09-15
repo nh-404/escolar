@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - School Management System</title>
+    <link rel="stylesheet" href="{% static 'auth/index.css' %}">
+
+    
+    
+</head>
+<body>
+    <div class="header">
+        <h1>Student Dashboard</h1>
+        <div class="profile">
+            <span>Welcome, Student</span>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <a href="{% url 'index' %}">Dashboard</a>
+        <a href="#">My Classes</a>
+        <a href="#">Assignments</a>
+        <a href="#">Exams</a>
+        <a href="#">Results</a>
+        <a href="#">Settings</a>
+    </div>
+
+    <div class="content">
+        <h2>Dashboard</h2>
+        <div class="card">
+            <div class="profile-info">
+                <img src="student-avatar.png" alt="Student Avatar" width="100" height="100">
+                <div>
+                    <h3>John Doe</h3>
+                    <p>Class: 10</p>
+                    <p>Roll No: 23</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Upcoming Classes</h3>
+            <ul>
+                <li>Math - 9:00 AM to 10:00 AM</li>
+                <li>Science - 10:15 AM to 11:15 AM</li>
+                <li>English - 11:30 AM to 12:30 PM</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Pending Assignments</h3>
+            <ul>
+                <li>Math Homework - Due: 20th July</li>
+                <li>Science Project - Due: 22nd July</li>
+                <li>English Essay - Due: 24th July</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Recent Results</h3>
+            <div class="stats">
+                <div class="stat">
+                    <h4>Math</h4>
+                    <p>85%</p>
+                </div>
+                <div class="stat">
+                    <h4>Science</h4>
+                    <p>90%</p>
+                </div>
+                <div class="stat">
+                    <h4>English</h4>
+                    <p>88%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
