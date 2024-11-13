@@ -1,0 +1,135 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+}
+
+/* Header styling */
+.header {
+    background: linear-gradient(90deg, #1c2841, #67496d);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header h1 {
+    margin: 0;
+}
+.header .profile a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+    transition: color 0.3s;
+}
+.header .profile a:hover {
+    color: #d1d1d1;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 250px;
+    background-color: #0a0a0a;
+    position: fixed;
+    height: 100%;
+    padding-top: 20px;
+    color: white;
+}
+.sidebar a {
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: background 0.3s, color 0.3s;
+}
+.sidebar a i {
+    margin-right: 10px;
+}
+.sidebar a:hover {
+    background-color: #4c70ba;
+    color: #f0f2f5;
+}
+
+/* Main content styling */
+.content {
+    margin-left: 250px;
+    padding: 40px;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+}
+.card {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.stats {
+    display: flex;
+    justify-content: space-around;
+}
+.stat {
+    flex: 1;
+    padding: 20px;
+    margin: 10px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    transition: background 0.3s;
+}
+.stat:hover {
+    background-color: #d4d4d4;
+}
+.stat h4 {
+    margin: 0;
+    font-size: 24px;
+}
+.stat p {
+    margin: 10px 0 0;
+    font-size: 20px;
+    color: #333;
+}
+
+/* List styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+ul li {
+    background: #fff;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s;
+}
+ul li:hover {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Table container and styling */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+    white-space: nowrap; /* Prevents content from wrapping and ensures scrollability */
+}
+thead {
+    background-color: #343a40;
+    color: white;
+}

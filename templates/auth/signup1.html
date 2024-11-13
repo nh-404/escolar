@@ -1,8 +1,9 @@
+{% load static %}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="static/signup.css">
+  <link rel="stylesheet" href="{% static 'auth/signup.css' %}">
   <title>SignUp</title>
 </head>
 
@@ -20,8 +21,11 @@
   <form action="{% url 'signUp' %}" method="post">
     {% csrf_token %}
 
+    <label for="email">Username:</label>
+    <input type="text" name="username" >
+
       <label for="email">Email:</label>
-      <input type="email" name="email" required>
+      <input type="email" name="email" >
       
       <label for="password">Password:</label>
       <input type="password" name="password" required>
