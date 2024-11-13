@@ -1,1 +1,1 @@
-# Schoo_lManagemen_tSystem
+# School Management System
