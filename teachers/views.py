@@ -80,3 +80,49 @@ def teacher_Remove(request,id):
     teacherRm = Teacher.objects.get(id=id)
     teacherRm.delete()
     return redirect('teacherList')   
+
+
+@login_required(login_url='login')
+
+def total_classes(request):
+
+
+    return render(request, 'classes/total_classes.html') 
+
+
+@login_required(login_url='login')
+
+def t_classes(request):
+
+
+    return render(request, 'teacher_temp/tclass.html') 
+
+
+
+@login_required(login_url='login')
+
+def t_result(request):
+
+
+    
+    return render(request, 'teacher_temp/tresult.html') 
+
+
+
+@login_required(login_url='login')
+
+def t_exam(request):
+
+
+
+    return render(request, 'teacher_temp/texam.html') 
+
+
+
+@login_required(login_url='login')
+
+def t_assignment(request):
+
+
+
+    return render(request, 'teacher_temp/tassignment.html') 

@@ -1,0 +1,56 @@
+{% extends 'teacher/teacher.html' %}
+{% block title %}Teacher Class{% endblock title %}
+
+
+{% block content %}
+      
+    <div class="container">
+        <h1>Teacher Administration</h1>
+
+        <!-- Teacher Information -->
+        <div class="teacher-info">
+            <p><strong>Teacher Name:</strong> Mrs. Johnson</p>
+            <p><strong>Department:</strong> Science</p>
+            <p><strong>Contact:</strong> johnson@example.com</p>
+        </div>
+
+        <!-- Assigned Classes Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Subject</th>
+                    <th>Total Students</th>
+                    <th>Notes</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>10A</td>
+                    <td>Biology</td>
+                    <td>30</td>
+                    <td class="notes">Focus on practical sessions</td>
+                    <td><a href="/edit-class/10A" class="btn">Edit</a></td>
+                </tr>
+                <tr>
+                    <td>10B</td>
+                    <td>Chemistry</td>
+                    <td>28</td>
+                    <td class="notes">Needs additional lab materials</td>
+                    <td><a href="/edit-class/10B" class="btn">Edit</a></td>
+                </tr>
+                <tr>
+                    <td>11A</td>
+                    <td>Physics</td>
+                    <td>32</td>
+                    <td class="notes">Upcoming project presentations</td>
+                    <td><a href="/edit-class/11A" class="btn">Edit</a></td>
+                </tr>
+                <!-- Add more classes as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    
+    {% endblock content %}

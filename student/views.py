@@ -82,3 +82,25 @@ def studentDashboard(request):
 
 
 
+@login_required(login_url='login')
+def classes(request):
+
+    return render(request, 'classes/class.html')
+
+
+@login_required(login_url='login')
+def result(request):
+
+    return render(request, 'result/result.html')
+
+@login_required(login_url='login')
+def exam(request):
+
+    return render(request, 'exam/exam.html')    
+
+    
+
+@login_required(login_url='login')
+def student_assignment(request):
+
+    return render(request, 'student/student_assignment.html')   

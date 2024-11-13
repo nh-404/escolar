@@ -10,16 +10,27 @@
             <h3>Statistics</h3>
             <div class="stats">
                 <div class="stat">
-                    <h4>Total Students</h4>
-                    <p>{{count}}</p>
+
+                    <a href="{% url 'studentList' %}">
+                        <h4>Total Students</h4>
+                        <p>{{count}}</p>
+                    </a>
+                  
                 </div>
                 <div class="stat">
-                    <h4>Total Teachers</h4>
-                    <p>{{ teacherCount }}</p>
+
+                    <a href="{% url 'teacherList' %}">
+                        <h4>Total Teachers</h4>
+                        <p>{{ teacherCount }}</p>
+                    </a>
+
                 </div>
                 <div class="stat">
-                    <h4>Total Classes</h4>
-                    <p>30</p>
+                    <a href="{% url 'total_classes' %}">
+                        <h4>Total Classes</h4>
+                        <p>(( total_classes ))</p>
+                      </a>
+
                 </div>
             </div>
         </div>

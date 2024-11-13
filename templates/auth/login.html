@@ -11,23 +11,29 @@
 <body>
     <div class="login-container">
         <div class="login-box">
-            <img src="https://via.placeholder.com/100" alt="User Icon" class="user-icon">
-            <h2>{{ user.name }}</h2>
+
             <p> Sign in required</p>
 
             <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}
 
-                <input type="text" name="username" placeholder="Username" id="username" required>
-                <input type="password" name="password" placeholder="Password" id="password" required>
+                <label for="email">Username:</label>
+                <input type="text" name="username" >
+                  
+                  <label for="password">Password:</label>
+                  <input type="password" name="password" required>
+                  
+                  <button type="submit">Login</button>
 
-                <button type="submit">Sign in</button>
 
-                <div class="options">
-                    <a href="#">I forgot password</a>
-                    <a href="{% url 'signUp' %}">SignUp</a>
-                </div>
             </form>
+
+            <div>
+                <a href="#" class="no-underline">I forgot password</a>
+                <div>
+                <a href="{% url 'signUp' %}" class="no-underline">SignUp</a>
+                </div>
+            </div>
         </div>
     </div>
 </body>

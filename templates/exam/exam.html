@@ -1,0 +1,64 @@
+
+{% extends 'student/student.html' %}
+
+{% block title %}Exam{% endblock title %}
+
+{% block student %}
+
+
+       
+    <div class="container">
+        <h1>Exam Schedule</h1>
+
+        <!-- General Exam Information -->
+        <div class="exam-info">
+            <p><strong>Class:</strong> 10A</p>
+            <p><strong>Academic Year:</strong> 2024-2025</p>
+            <p><strong>Examination:</strong> Midterm Exams</p>
+        </div>
+
+        <!-- Exam Schedule Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="subject-row">
+                    <td>Mathematics</td>
+                    <td>March 5, 2025</td>
+                    <td>9:00 AM - 11:00 AM</td>
+                    <td>Room 101</td>
+                </tr>
+                <tr>
+                    <td>Science</td>
+                    <td>March 6, 2025</td>
+                    <td>9:00 AM - 11:00 AM</td>
+                    <td>Room 102</td>
+                </tr>
+                <tr class="subject-row">
+                    <td>English</td>
+                    <td>March 7, 2025</td>
+                    <td>9:00 AM - 11:00 AM</td>
+                    <td>Room 103</td>
+                </tr>
+                <tr>
+                    <td>History</td>
+                    <td>March 8, 2025</td>
+                    <td>9:00 AM - 11:00 AM</td>
+                    <td>Room 104</td>
+                </tr>
+                <!-- Add more subjects as needed -->
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+    {% endblock student %}

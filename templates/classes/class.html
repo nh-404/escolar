@@ -1,0 +1,51 @@
+{% extends 'student/student.html' %}
+
+{% block title %}Class{% endblock title %}
+
+{% block student %}
+    <div class="container">
+        <h1>School Classes</h1>
+        
+        <!-- Example Class Information -->
+        <div class="class-info">
+            <h2>Class: 6A</h2>
+            <p>Teacher: Mr. Smith</p>
+            <p>Total Students: 30</p>
+        </div>
+
+        <!-- Table for Subject Details -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Teacher</th>
+                    <th>Number of Students</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mathematics</td>
+                    <td>Mrs. Johnson</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>Science</td>
+                    <td>Mr. Brown</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>English</td>
+                    <td>Ms. Williams</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>History</td>
+                    <td>Mr. Garcia</td>
+                    <td>30</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Add more classes and subjects as needed -->
+    </div>
+    {% endblock student %}

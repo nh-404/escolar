@@ -1,0 +1,48 @@
+
+{% extends 'funtional/base.html' %}
+{% block title %}Total Classes{% endblock title %}
+{% block content %}
+
+
+    <div class="container">
+        <h1>Total Classes Entry</h1>
+
+        <!-- Class Information -->
+        <p><strong>Class:</strong> 10A</p>
+        <p><strong>Academic Year:</strong> 2024-2025</p>
+
+        <!-- Total Classes Entry Form -->
+        <form action="/submit-total-classes" method="POST">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Total Classes Conducted</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mathematics</td>
+                        <td><input type="number" name="math_classes" min="0" placeholder="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Science</td>
+                        <td><input type="number" name="science_classes" min="0" placeholder="0"></td>
+                    </tr>
+                    <tr>
+                        <td>English</td>
+                        <td><input type="number" name="english_classes" min="0" placeholder="0"></td>
+                    </tr>
+                    <tr>
+                        <td>History</td>
+                        <td><input type="number" name="history_classes" min="0" placeholder="0"></td>
+                    </tr>
+                    <!-- Add more subjects as needed -->
+                </tbody>
+            </table>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+    
+    {% endblock content %}

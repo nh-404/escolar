@@ -50,7 +50,7 @@ body {
   }
 
   button {
-    background-color: #4caf50;
+    background-color: #4d1c53;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -62,5 +62,6 @@ body {
 /* Remove underline from all anchor links */
 /* Remove underline for links with the class 'no-underline' */
 a.no-underline {
-  text-decoration: none;
-}
+    text-decoration: none;
+  }
+  

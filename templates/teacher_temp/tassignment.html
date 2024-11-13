@@ -1,0 +1,42 @@
+
+{% extends 'teacher/teacher.html' %}
+{% block title %}Teacher Assignments{% endblock title %}
+
+
+{% block content %}
+
+
+    <div class="container">
+        <h1>Create Assignment</h1>
+
+        <!-- Assignment Form -->
+        <form action="/submit-assignment" method="POST">
+            <!-- Assignment Title -->
+            <label for="title">Assignment Title:</label>
+            <input type="text" id="title" name="title" placeholder="Enter assignment title" required>
+
+            <!-- Description -->
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" placeholder="Enter assignment details" required></textarea>
+
+            <!-- Due Date -->
+            <label for="due_date">Due Date:</label>
+            <input type="date" id="due_date" name="due_date" required>
+
+            <!-- Assigned Class -->
+            <label for="class">Assign to Class:</label>
+            <select id="class" name="class" required>
+                <option value="">Select Class</option>
+                <option value="10A">10A</option>
+                <option value="10B">10B</option>
+                <option value="11A">11A</option>
+                <!-- Add more classes as needed -->
+            </select>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Assign</button>
+        </form>
+    </div>
+
+
+{% endblock content %}

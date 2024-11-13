@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8fafc;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+h1 {
+    text-align: center;
+    color: #333;
+}
+.teacher-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.teacher-info p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+th {
+    background-color: #f3f4f6;
+    font-weight: bold;
+}
+.notes {
+    text-align: left;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 10px;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+.btn:hover {
+    background-color: #45a049;
+}

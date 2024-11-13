@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eef2f7;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+h1 {
+    text-align: center;
+    color: #333;
+}
+.exam-info {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.exam-info p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+.subject-row {
+    background-color: #f9f9f9;
+}

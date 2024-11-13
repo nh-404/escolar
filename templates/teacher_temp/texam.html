@@ -1,0 +1,48 @@
+
+{% extends 'teacher/teacher.html' %}
+{% block title %}Teacher Assignments{% endblock title %}
+
+
+{% block content %}
+
+
+
+    <div class="container">
+        <h1>Teacher Exam</h1>
+
+        <!-- Exam Management Section -->
+        <div class="section">
+            <h2>Create Exam</h2>
+            <form action="/submit-exam" method="POST">
+                <!-- Exam Name -->
+                <label for="exam_name">Exam Name:</label>
+                <input type="text" id="exam_name" name="exam_name" placeholder="Enter exam name" required>
+
+                <!-- Subject -->
+                <label for="subject">Subject:</label>
+                <select id="subject" name="subject" required>
+                    <option value="">Select Subject</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Science">Science</option>
+                    <option value="English">English</option>
+                    <!-- Add more subjects -->
+                </select>
+
+                <!-- Exam Date -->
+                <label for="exam_date">Exam Date:</label>
+                <input type="date" id="exam_date" name="exam_date" required>
+
+                <!-- Exam Duration -->
+                <label for="exam_duration">Duration (hours):</label>
+                <input type="text" id="exam_duration" name="exam_duration" placeholder="Enter duration in hours" required>
+
+                <button type="submit" class="submit-btn">Create Exam</button>
+            </form>
+        </div>
+
+        <!-- Result Management Section -->
+       
+
+
+
+{% endblock content %}
