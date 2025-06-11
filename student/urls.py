@@ -6,7 +6,7 @@ from student import views
 
 urlpatterns = [
 
-    path('studentData', views.studentData, name='studentData'),
+    path('addStudent', views.add_student, name='add_student'),
     path('edit/<int:id>/', views.edit, name='edit'),  
     path('remove/<int:id>/', views.remove, name='remove'), 
     path('studentlist', views.studentDashboard, name='student'),

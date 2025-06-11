@@ -1,92 +1,107 @@
-
-{% extends 'funtional/base.html' %}
+{% extends 'base/base.html' %}
 {% block title %}Student List{% endblock title %}
 
 {% block content %}
 
-<div class="content">
-    <h3>Student Panel</h3>
-    <div class="card">
-        <div class="stats">
-            <div class="stat">
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <h2 class="text-center text-white bg-dark p-3">Insert Student Data</h2>
-                    <form method="post" action="{% url 'studentData' %}">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="studentId" name="studentId" placeholder="Enter student ID">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="studentName" name="name" placeholder="Enter name">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" class="form-control" id="studentAge" name="age" placeholder="Enter age">
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control" id="studentGender" name="gender">
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" class="form-control" id="studentPhone" name="phone" placeholder="Enter phone number">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="studentEmail" name="email" placeholder="Enter Email">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+<div class="p-6">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Student Panel</h1>
+    
+    <!-- Insert Student Card -->
+    <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md mb-8 overflow-hidden">
+        <h2 class="text-xl font-semibold text-white bg-green-700 dark:bg-green-800 p-4">Insert Student Data</h2>
+        <div class="p-6">
+            <form method="post" action="{% url 'add_student' %}" class="space-y-4">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="studentId" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Student ID</label>
+                        <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" id="studentId" name="studentId" placeholder="Enter student ID">
+                    </div>
+                    <div>
+                        <label for="studentName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
+                        <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" id="studentName" name="name" placeholder="Enter name">
+                    </div>
+                    <div>
+                        <label for="studentAge" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Age</label>
+                        <input type="number" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" id="studentAge" name="age" placeholder="Enter age">
+                    </div>
+                    <div>
+                        <label for="studentGender" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Gender</label>
+                        <select class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" id="studentGender" name="gender">
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="studentPhone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone Number</label>
+                        <input type="tel" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" id="studentPhone" name="phone" placeholder="Enter phone number">
+                    </div>
+                    <div>
+                        <label for="studentEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                        <input type="email" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" id="studentEmail" name="email" placeholder="Enter Email">
+                    </div>
                 </div>
-            </div>
+                <div class="pt-4">
+                    <button type="submit" class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition duration-200">
+                        Submit
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <div class="card">
-        <div>
-            <h2 class="text-center text-white bg-dark p-3">Students Details</h2>
-            <h4>Total Students: {{ studentDB.count }}</h4>
-            <div>
-                <input class="form-control mr-sm-2" type="search" placeholder="Search...">
+    <!-- Students Details Card -->
+    <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden">
+        <div class="flex justify-between items-center bg-green-700 dark:bg-green-800 p-4">
+            <h2 class="text-xl font-semibold text-white">Students Details</h2>
+            <span class="text-white">Total Students: {{ studentDB.count }}</span>
+        </div>
+        
+        <div class="p-6">
+            <div class="mb-6">
+                <input class="w-full md:w-1/3 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" type="search" placeholder="Search students...">
             </div>
-            <table class="table table-responsive mt-4 p-3">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Age</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for student in studentDB %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ student.studentID }}</td>
-                        <td>{{ student.name }}</td>
-                        <td>{{ student.email }}</td>
-                        <td>{{ student.phone }}</td>
-                        <td>{{ student.age }}</td>
-                        <td>{{ student.gender }}</td>
-                        <td>
-                            <a href="{% url 'edit' student.id %}">
-                                <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{% url 'remove' student.id %}">
-                                <button type="button" class="btn btn-outline-danger btn-sm">Remove</button>
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+                    <thead class="bg-gray-50 dark:bg-gray-600">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">No</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">ID</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Name</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Email</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Phone</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Age</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Gender</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600">
+                        {% for student in studentDB %}
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ forloop.counter }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">{{ student.studentID }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ student.name }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ student.email }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ student.phone }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ student.age }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ student.gender }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <div class="flex space-x-2">
+                                    <a href="{% url 'edit' student.id %}" class="text-green-600 dark:text-green-400 hover:text-green-900 dark:hover:text-green-300">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{% url 'remove' student.id %}" class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-300">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

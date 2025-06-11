@@ -18,7 +18,7 @@ def studentList(request):
 
 
 @login_required(login_url='login')
-def studentData(request):
+def add_student(request):
 
     
     if request.method == 'POST':
@@ -60,7 +60,7 @@ def edit(request, id):
         student.save()
         return redirect('studentList')  # Assuming 'index' is the name of your homepage view
 
-    return render(request, 'funtional/edit.html', {'student': student})
+    return render(request, 'base/edit.html', {'student': student})
 
 
 

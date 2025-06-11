@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolar - School Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 dark:bg-dark-900 font-sans transition-colors duration-200">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 bg-gray-800 dark:bg-dark-900 text-white border-r border-gray-700">
+                <div class="flex items-center justify-between h-16 px-4 bg-green-700 dark:bg-green-800">
+                    <div class="flex items-center">
+                        <i class="fas fa-graduation-cap text-2xl mr-2"></i>
+                        <span class="text-xl font-semibold">Escolar</span>
+                    </div>
+                    <button id="theme-toggle" class="p-1 rounded-lg hover:bg-green-600">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <div class="space-y-1">
+
+                        <a href="{% url 'index' %}" class="flex items-center px-2 py-3 text-sm font-medium rounded-md bg-green-700 dark:bg-green-800 text-white">
+                            <i class="fas fa-database mr-3"></i>
+                            Database4
+                        </a>
+                        <div class="pl-8 space-y-1">
+                            <a href="{% url 'student' %}" class="flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-700 dark:hover:bg-gray-700 text-white">
+                                <i class="fas fa-users mr-3"></i>
+                                Students
+                            </a>
+                            <a href="{% url 'teacher' %}" class="flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-700 dark:hover:bg-gray-700 text-white">
+                                <i class="fas fa-chalkboard-teacher mr-3"></i>
+                                Teachers
+                            </a>
+                            <a href="#" class="flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-700 dark:hover:bg-gray-700 text-white">
+                                <i class="fas fa-book mr-3"></i>
+                                Classes
+                            </a>
+                            <a href="#" class="flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-700 dark:hover:bg-gray-700 text-white">
+                                <i class="fas fa-calendar-alt mr-3"></i>
+                                Attendance
+                            </a>
+                            <a href="#" class="flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-700 dark:hover:bg-gray-700 text-white">
+                                <i class="fas fa-clipboard-list mr-3"></i>
+                                Grades
+                            </a>
+                            <a href="#" class="flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-700 dark:hover:bg-gray-700 text-white">
+                                <i class="fas fa-file-invoice-dollar mr-3"></i>
+                                Fees
+                            </a>
+                            <a href="#" class="flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-700 dark:hover:bg-gray-700 text-white">
+                                <i class="fas fa-cog mr-3"></i>
+                                Settings
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 border-t border-gray-700">
+                    <div class="flex items-center">
+                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                        <div class="ml-3">
+                            <p class="text-sm font-medium">Admin User</p>
+                            <p class="text-xs font-medium text-gray-400">admin@school.edu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+{% block content %}{% endblock content %}
+    </div>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved user preference or use system preference
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+        
+        // Toggle dark mode
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>

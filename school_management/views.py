@@ -17,7 +17,7 @@ def index(request):
     teacher_count = Teacher.objects.count() 
 
 
-    return render(request, 'funtional/index.html', {
+    return render(request, 'base/index.html', {
 
             'studentDB': studentDB, 
             'count': student_count, 

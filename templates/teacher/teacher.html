@@ -1,60 +1,221 @@
+{% extends 'base/base.html' %}
 
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> {% block teacher %}Teacher Dashboard - School Management System{% endblock teacher %} </title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"rel="stylesheet"/>
-    <link rel="stylesheet" href="{% static 'base/index.css' %}">
-    <link rel="stylesheet" href="{% static 'teacher_css/tclasses.css' %}">
-    <link rel="stylesheet" href="{% static 'teacher_css/tresult.css' %}">
-    <link rel="stylesheet" href="{% static 'teacher_css/texam.css' %}">
-    <link rel="stylesheet" href="{% static 'teacher_css/tassignment.css' %}">
-</head>
-<body>
-    <div class="header">
-        <h1>Teacher Dashboard</h1>
-        <div class="profile">
-            <span>Welcome, {{ user.username }}</span>
-    
-            {% if request.user.is_authenticated %}
-    
-            <a href="{% url 'logout' %}">
-              <button type="submit" class="btn btn-danger">Logout</button>
-            </a>
-    
-            {% else %}
-    
-            <a href="{% url 'login' %}">
-              <button type="submit" class="btn btn-primary">Login</button>
-            </a>
-    
-            {% endif %}
-    
-          </div>
+{% block title %}{% endblock title %}
+
+{% block content %}
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <div class="flex items-center justify-between h-16 px-4 bg-white border-b border-gray-200">
+                <!-- Top nav content -->
+            </div>
+
+            <!-- Teachers Content -->
+            <div class="flex-1 overflow-auto p-4">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">Teachers</h1>
+                        <p class="text-gray-600">Manage faculty members and staff</p>
+                    </div>
+                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center">
+                        <i class="fas fa-plus mr-2"></i> Add Teacher
+                    </button>
+                </div>
+
+                <!-- Teacher Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                    <!-- Teacher Card 1 -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="p-4 bg-indigo-600 text-white flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-semibold">Mathematics Department</h3>
+                                <p class="text-indigo-100 text-sm">Senior Teacher</p>
+                            </div>
+                            <div class="bg-indigo-500 p-2 rounded-full">
+                                <i class="fas fa-square-root-alt text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center mb-4">
+                                <img class="h-16 w-16 rounded-full mr-4" src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-800">Sarah Johnson</h4>
+                                    <p class="text-gray-600 text-sm">M.Sc Mathematics</p>
+                                    <div class="flex items-center mt-1">
+                                        <span class="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">Active</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-sm">
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-envelope mr-2 text-indigo-600"></i>
+                                    sarah@school.edu
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-phone mr-2 text-indigo-600"></i>
+                                    +1 555-789-1234
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-calendar-alt mr-2 text-indigo-600"></i>
+                                    Joined: 2018
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-users mr-2 text-indigo-600"></i>
+                                    3 Classes
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t border-gray-200 px-4 py-3 flex justify-end space-x-2">
+                            <button class="text-indigo-600 hover:text-indigo-900 px-3 py-1 rounded hover:bg-indigo-50">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="text-blue-600 hover:text-blue-900 px-3 py-1 rounded hover:bg-blue-50">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="text-red-600 hover:text-red-900 px-3 py-1 rounded hover:bg-red-50">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Teacher Card 2 -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="p-4 bg-blue-600 text-white flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-semibold">Science Department</h3>
+                                <p class="text-blue-100 text-sm">Head of Department</p>
+                            </div>
+                            <div class="bg-blue-500 p-2 rounded-full">
+                                <i class="fas fa-flask text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center mb-4">
+                                <img class="h-16 w-16 rounded-full mr-4" src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-800">Michael Brown</h4>
+                                    <p class="text-gray-600 text-sm">Ph.D Physics</p>
+                                    <div class="flex items-center mt-1">
+                                        <span class="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">Active</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-sm">
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-envelope mr-2 text-blue-600"></i>
+                                    michael@school.edu
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-phone mr-2 text-blue-600"></i>
+                                    +1 555-456-7890
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-calendar-alt mr-2 text-blue-600"></i>
+                                    Joined: 2015
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-users mr-2 text-blue-600"></i>
+                                    2 Classes
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t border-gray-200 px-4 py-3 flex justify-end space-x-2">
+                            <button class="text-blue-600 hover:text-blue-900 px-3 py-1 rounded hover:bg-blue-50">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="text-blue-600 hover:text-blue-900 px-3 py-1 rounded hover:bg-blue-50">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="text-red-600 hover:text-red-900 px-3 py-1 rounded hover:bg-red-50">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Add Teacher Card -->
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg hover:border-indigo-500 transition-colors flex items-center justify-center">
+                        <button class="flex flex-col items-center p-6 text-indigo-600 hover:text-indigo-800">
+                            <div class="bg-indigo-100 p-4 rounded-full mb-3">
+                                <i class="fas fa-plus text-2xl"></i>
+                            </div>
+                            <span class="font-medium">Add New Teacher</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Teacher Details Section -->
+                <div class="bg-white rounded-lg shadow overflow-hidden mb-6">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-lg font-semibold text-gray-800">Teacher Details</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="md:col-span-1">
+                                <div class="flex flex-col items-center">
+                                    <img class="h-32 w-32 rounded-full mb-4" src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+                                    <h3 class="text-xl font-semibold text-gray-800">Sarah Johnson</h3>
+                                    <p class="text-gray-600">Mathematics Teacher</p>
+                                    <div class="mt-2">
+                                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Active</span>
+                                    </div>
+                                </div>
+                                <div class="mt-6 space-y-3">
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-envelope mr-2 text-indigo-600"></i>
+                                        sarah@school.edu
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-phone mr-2 text-indigo-600"></i>
+                                        +1 555-789-1234
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-map-marker-alt mr-2 text-indigo-600"></i>
+                                        123 School St, Education City
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-birthday-cake mr-2 text-indigo-600"></i>
+                                        June 15, 1985
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:col-span-2">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                    <div class="bg-gray-50 p-4 rounded-lg">
+                                        <h4 class="text-sm font-medium text-gray-500 mb-2">QUALIFICATIONS</h4>
+                                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                            <li>M.Sc Mathematics - State University (2010)</li>
+                                            <li>B.Ed - Education College (2012)</li>
+                                            <li>Ph.D Candidate - Mathematics</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-4 rounded-lg">
+                                        <h4 class="text-sm font-medium text-gray-500 mb-2">CLASSES TEACHING</h4>
+                                        <div class="space-y-2">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm font-medium">10A Mathematics</span>
+                                                <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">Mon, Wed, Fri</span>
+                                            </div>
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm font-medium">11B Advanced Math</span>
+                                                <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">Tue, Thu</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-500 mb-2">BIO</h4>
+                                    <p class="text-gray-700 text-sm">
+                                        Sarah has been teaching mathematics at our school since 2018. She specializes in algebra and calculus, 
+                                        with a passion for making complex mathematical concepts accessible to all students. 
+                                        Before joining our institution, she taught at City College for 5 years.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="sidebar">
-      
-        <a href="{% url 'teacher' %}">Dashboard</a>
-        <a href="{% url 't_classes' %}"> Classes</a>
-        <a href="{% url 't_assignment' %}">Assignments</a>
-        <a href="{% url 't_exam' %}">Exams</a>
-        <a href="{% url 't_result' %}">Results</a>
-        <a href="{% url 'index' %}">Settings</a>
-        
-    </div>
-
-    <div class="content">
-
-        {% block content %}
-        
-
-        <h1> Coming Soon </h1>
-
-        {% endblock content %}
-
-</body>
-</html>
+{% endblock content %}

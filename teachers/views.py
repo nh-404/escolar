@@ -22,7 +22,7 @@ def teacherDashboard(request):
 
 
 
-def teacherData(request):
+def add_teacher(request):
 
 
     if request.method == 'POST':
@@ -122,7 +122,5 @@ def t_exam(request):
 @login_required(login_url='login')
 
 def t_assignment(request):
-
-
 
     return render(request, 'teacher_temp/tassignment.html') 
