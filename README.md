@@ -30,5 +30,12 @@ A simple yet powerful School Management System. This project helps manage essent
 - Schools looking for a simple digital system
 
 
+## SOFTWARE UI
+
+<div align= "center">
+<img src = "https://github.com/nh-404/escolar/blob/main/static/img/escolar_dasboard.png">
+</div>
+
+
 
 
