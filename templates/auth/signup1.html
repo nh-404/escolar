@@ -1,54 +1,83 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'auth/signup.css' %}">
   <title>SignUp</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{% static 'auth/signup.css' %}">
 </head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-400 via-emerald-500 to-teal-600">
 
-<!-- __________________________________________________________________________ -->
+  <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
+    <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">Create an Account</h2>
 
-<body>
-  
-
-<div class="login-container">
-  
-  <h1>SignUp</h1>
-
-  <h4>{{ error1 }}</h4>
-
-  <form action="{% url 'signUp' %}" method="post">
-    {% csrf_token %}
-
-    <label for="email">Username:</label>
-    <input type="text" name="username" >
-
-      <label for="email">Email:</label>
-      <input type="email" name="email" >
-      
-      <label for="password">Password:</label>
-      <input type="password" name="password" required>
-      
-      <label for="role">Role:</label>
-      <select name="role">
-          <option value="student">Student</option>
-          <option value="teacher">Seller</option>
-      </select>
-      
-      <label for="student_id">Student ID (for Students):</label>
-      <input type="text" name="student_id">
-  
-      <button type="submit">Sign Up</button>
-  </form>
-  <div>
-    <div>
-    <a href="{% url 'login' %}" class="no-underline" >Already User..??</a>
+    <!-- Error Message -->
+    {% if error1 %}
+    <div class="mb-4 p-3 bg-red-100 text-red-700 rounded-md text-sm">
+      {{ error1 }}
     </div>
-</div>
-  
-</div>
+    {% endif %}
 
+    <form action="{% url 'signUp' %}" method="post" class="space-y-4">
+      {% csrf_token %}
+
+      <!-- Username -->
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+        <input type="text" name="username" id="username"
+               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+               required>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" name="email" id="email"
+               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+               required>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" name="password" id="password"
+               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+               required>
+      </div>
+
+      <!-- Role -->
+      <div>
+        <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+        <select name="role" id="role"
+                class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+        </select>
+      </div>
+
+      <!-- Student ID -->
+      <div>
+        <label for="student_id" class="block text-sm font-medium text-gray-700">Student/Teacher ID</label>
+        <input type="text" name="student_id" id="student_id"
+               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit"
+              class="w-full bg-emerald-600 text-white py-2 px-4 rounded-md hover:bg-emerald-700 transition">
+        Sign Up
+      </button>
+    </form>
+
+    <!-- Links -->
+    <div class="mt-6 text-center">
+      <a href="{% url 'login' %}" class="text-sm text-gray-600 hover:text-emerald-600 transition">
+        Already a user? <span class="font-semibold">Login</span>
+      </a>
+    </div>
+  </div>
 
 </body>
 </html>
