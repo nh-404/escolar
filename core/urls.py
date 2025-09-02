@@ -5,9 +5,13 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('', include('school_management.urls')),
-    path('student', include('student.urls')),
-    path('teacher', include('teachers.urls')),
+    path('', include('home.urls')),
+    path('exam/', include('exam.urls')),
+    path('classes/', include('classes.urls')),
+    path('account/', include('account.urls')),
+    path('student/', include('student.urls')),
+    path('teacher/', include('teachers.urls')),
+    path('settings/', include('escolar_settings.urls')),
     
 ]
 
