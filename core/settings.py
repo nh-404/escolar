@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'account.apps.AccountConfig',
 
     #__custom apps__
 
@@ -46,7 +47,6 @@ INSTALLED_APPS = [
     'student',
     'teachers',
     'classes',
-    'account',
     'exam',
     'escolar_settings'
 
@@ -140,3 +140,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGOUT_REDIRECT_URL = '/'
+
+#Order Email Notification
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kodefable@gmail.com'
+EMAIL_HOST_PASSWORD = 'lttfvaijkeszgnws'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
