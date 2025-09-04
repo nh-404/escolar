@@ -158,19 +158,7 @@ Includes: Tailwind CDN (play-cdn) for quick prototyping. For production, install
   .lds-ring div:nth-child(3){animation-delay:-.15s}
   @keyframes lds-ring{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
 </style>
-<script>
-  const sidebar = document.getElementById('sidebar');
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const closeSidebarBtn = document.getElementById('closeSidebarBtn');
 
-  mobileMenuBtn.addEventListener('click', () => {
-    sidebar.classList.remove('-translate-x-full');
-  });
-
-  closeSidebarBtn.addEventListener('click', () => {
-    sidebar.classList.add('-translate-x-full');
-  });
-</script>
 
 </body>
 </html>
