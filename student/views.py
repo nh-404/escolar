@@ -1,7 +1,7 @@
-# from django.shortcuts import render, redirect, get_object_or_404
-# from student.models import Student
-# from django.contrib.auth.decorators import login_required
-# from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
+#from student.models import Student
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 
@@ -11,10 +11,7 @@
 #     studentDB = Student.objects.all()
 #     student_count = Student.objects.count() 
 
-#     return render(request, 'student/studentList.html', {
-#             'studentDB': studentDB,
-#             'count': student_count
-#         })
+#     return render(request, 'student/studentList.html')
 
 
 # @login_required(login_url='login')
@@ -74,10 +71,10 @@
 
 
 
-# @login_required(login_url='login')
-# def studentDashboard(request):
+@login_required(login_url='login')
+def studentDashboard(request):
 
-#     return render(request, 'student/student.html')
+    return render(request, 'student/student.html')
 
 
 

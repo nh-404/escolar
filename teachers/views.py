@@ -1,6 +1,6 @@
-# from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 # from teachers.models import Teacher
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 # from django.contrib import messages
 
 # @login_required(login_url='login')
@@ -15,10 +15,10 @@
 #             'teacherCount': teacher_count
 #         })
 
-# @login_required(login_url='login')
-# def teacherDashboard(request):
+@login_required(login_url='login')
+def teacherDashboard(request):
 
-#     return render(request, 'teacher/teacher.html')
+    return render(request, 'teacher/teacher.html')
 
 
 

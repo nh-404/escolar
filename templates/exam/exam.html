@@ -3,62 +3,34 @@
 
 {% block title %}Exam{% endblock title %}
 
-{% block student %}
+{% block content %}
 
 
-       
-    <div class="container">
-        <h1>Exam Schedule</h1>
+     
+<!-- EXAMS / MARKS PAGE -->
+<section id="exams" class="max-w-6xl mx-auto p-6 mt-6">
+  <h2 class="text-xl font-semibold mb-4">Exams & Marks</h2>
+  <div class="bg-white rounded shadow-sm p-4">
+    <form class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+      <select class="border rounded py-2 px-3"><option>Term</option></select>
+      <select class="border rounded py-2 px-3"><option>Class</option></select>
+      <button class="px-4 py-2 bg-indigo-600 text-white rounded">Filter</button>
+    </form>
 
-        <!-- General Exam Information -->
-        <div class="exam-info">
-            <p><strong>Class:</strong> 10A</p>
-            <p><strong>Academic Year:</strong> 2024-2025</p>
-            <p><strong>Examination:</strong> Midterm Exams</p>
-        </div>
-
-        <!-- Exam Schedule Table -->
-        <table>
-            <thead>
-                <tr>
-                    <th>Subject</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Location</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="subject-row">
-                    <td>Mathematics</td>
-                    <td>March 5, 2025</td>
-                    <td>9:00 AM - 11:00 AM</td>
-                    <td>Room 101</td>
-                </tr>
-                <tr>
-                    <td>Science</td>
-                    <td>March 6, 2025</td>
-                    <td>9:00 AM - 11:00 AM</td>
-                    <td>Room 102</td>
-                </tr>
-                <tr class="subject-row">
-                    <td>English</td>
-                    <td>March 7, 2025</td>
-                    <td>9:00 AM - 11:00 AM</td>
-                    <td>Room 103</td>
-                </tr>
-                <tr>
-                    <td>History</td>
-                    <td>March 8, 2025</td>
-                    <td>9:00 AM - 11:00 AM</td>
-                    <td>Room 104</td>
-                </tr>
-                <!-- Add more subjects as needed -->
-            </tbody>
-        </table>
+    <div class="overflow-auto">
+      <table class="w-full text-left">
+        <thead class="text-sm text-gray-500 border-b">
+          <tr><th class="p-2">#</th><th>Name</th><th>Math</th><th>Bangla</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hover:bg-gray-50"><td class="p-2">1</td><td>Aisha</td><td>85</td><td>78</td><td>163</td></tr>
+        </tbody>
+      </table>
     </div>
+  </div>
+</section>
 
 
 
 
-
-    {% endblock student %}
+    {% endblock content %}

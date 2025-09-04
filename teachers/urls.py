@@ -1,10 +1,10 @@
-# from django.contrib import admin
-# from django.urls import path
-# from teachers import views
+from django.contrib import admin
+from django.urls import path
+from teachers import views
 
-# urlpatterns = [
+urlpatterns = [
    
-#     path('teacher', views.teacherDashboard, name='teacher'),
+     path('teacher', views.teacherDashboard, name='teacher'),
 #     path('teacherlist', views.teacherList, name='teacherList'),
 #     path('add_teacher', views.add_teacher, name='add_teacher'),
 #     path('edit/<int:id>/', views.teacher_Edit, name='teacherEdit'),  
@@ -14,4 +14,4 @@
 #      path('teacher_exam', views.t_exam, name='t_exam'),
 #      path('teacher_assignment', views.t_assignment, name='t_assignment'),
 #     path('remove/<int:id>/', views.teacher_Remove, name='teacherRemove'),  # Ensure <int:id> is used
-# ]
+]
