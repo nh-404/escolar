@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 
 @login_required(login_url='login')
-def home(request):
+def admin_dashboard(request):
     # studentDB = Student.objects.all()
     # student_count = Student.objects.count() 
 
@@ -14,7 +14,7 @@ def home(request):
     # teacher_count = Teacher.objects.count() 
 
 
-    return render(request, 'base/admin.html')
+    return render(request, 'admin/admin_dashboard.html')
     
     
     #  {

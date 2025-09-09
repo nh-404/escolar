@@ -12,12 +12,8 @@ User = settings.AUTH_USER_MODEL
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
-    
     if created:
-
-        if instance.role == 'Student':
+        if instance.role == "student":
             Student.objects.create(user=instance)
-
-        elif instance.role == 'Teacher':
+        elif instance.role == "teacher":
             Teacher.objects.create(user=instance)
-

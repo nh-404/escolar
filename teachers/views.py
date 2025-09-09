@@ -3,22 +3,20 @@ from teachers.models import Teacher
 from django.contrib.auth.decorators import login_required
 # from django.contrib import messages
 
+
+
 @login_required(login_url='login')
-# def teacherList(request):
+def teacher_list(request):
 
-#     teacherDB = Teacher.objects.all()
-#     teacher_count = Teacher.objects.count() 
+    return render(request, 'teacher/teacherList.html')
 
 
-#     return render(request, 'teacher/teacherList.html', {
-#             'teacherDB': teacherDB, 
-#             'teacherCount': teacher_count
-#         })
 
 @login_required(login_url='login')
 def teacher_dashboard(request):
 
-    return render(request, 'base/teacher_dashboard.html')
+    return render(request, 'teacher/teacher_main.html')
+
 
 
 

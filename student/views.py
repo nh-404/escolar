@@ -5,15 +5,15 @@ from django.contrib import messages
 
 
 
-# @login_required(login_url='login')
-# def studentList(request):
 
-#     studentDB = Student.objects.all()
-#     student_count = Student.objects.count() 
+def studentList(request):
+ 
 
-#     return render(request, 'student/studentList.html')
+    return render(request, 'student/studentList.html')
 
-@login_required(login_url='login')
+
+
+
 def add_student(request):
     if request.method == 'POST':
         student = Student(
@@ -59,10 +59,13 @@ def add_student(request):
 
 
 
-@login_required(login_url='login')
+
 def student_dashboard(request):
 
-    return render(request, 'base/student_dashboard.html')
+    return render(request, 'student/student_main.html')
+
+
+
 
 
 

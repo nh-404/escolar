@@ -4,7 +4,8 @@ from teachers import views
 
 urlpatterns = [
    
-     path('teacher_dashboard', views.teacher_dashboard, name='teacher'),
+     path('teacher_dashboard', views.teacher_dashboard, name='teacher_dashboard'),
+     path('teacher_list', views.teacher_list, name='teacher_list'),
      path('add_teacher', views.add_teacher, name='add_teacher'),
 #     path('edit/<int:id>/', views.teacher_Edit, name='teacherEdit'),  
 #      path('total_classes', views.total_classes, name='total_classes'),

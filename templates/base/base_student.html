@@ -90,26 +90,15 @@
   <div class="flex flex-1 overflow-hidden">
     <!-- Sidebar -->
     <aside id="sidebar" class="w-72 bg-white border-r flex flex-col sidebar-transition transform -translate-x-full md:translate-x-0 fixed md:sticky top-0 h-full z-10 md:z-auto">
-      
       <!-- Navigation -->
       <nav class="flex-1 px-4 py-6 space-y-1 overflow-auto scrollbar-hide">
-        <a href="{% url 'admin_dashboard' %}" 
+        <a href="{% url 'student_dashboard' %}" 
            class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
           <i class="fas fa-home text-gray-500 group-hover:text-blue-600 w-5"></i>
           <span>Dashboard</span>
         </a>
         
-        <a href="{% url 'student_dashboard' %}" 
-           class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
-          <i class="fas fa-graduation-cap text-gray-500 group-hover:text-blue-600 w-5"></i>
-          <span>Students</span>
-        </a>
-        
-        <a href="{% url 'teacher_dashboard' %}" 
-           class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
-          <i class="fas fa-chalkboard-teacher text-gray-500 group-hover:text-blue-600 w-5"></i>
-          <span>Teachers</span>
-        </a>
+      
         
         <div class="pt-4 pb-2 px-3">
           <p class="text-xs uppercase font-semibold text-gray-500">Academics</p>
@@ -190,14 +179,14 @@
       
       <!-- Page Content -->
       <div class="p-4 md:p-6">
-        {% block content %}{% endblock content %}
+        {% block student_dashboard %}{% endblock student_dashboard %}
       </div>
     </main>
   </div>
   
   <!-- Footer -->
   <footer class="bg-white border-t py-4 px-6 text-center text-gray-500 text-sm">
-    <p>© 2025 School Manager. All rights reserved.</p>
+    <p>© 2023 School Manager. All rights reserved.</p>
     <div class="mt-1 flex justify-center gap-4">
       <a href="#" class="hover:text-blue-600 transition">Privacy Policy</a>
       <a href="#" class="hover:text-blue-600 transition">Terms of Service</a>

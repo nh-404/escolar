@@ -1,109 +1,113 @@
+
 {% extends 'base/base.html' %}
-{% block title %}Student List{% endblock title %}
+{% load static %}
+{% block title %}Students - SMS{% endblock %}
+
 
 {% block content %}
 
-<div class="p-6">
-    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Student Panel</h1>
-    
-    <!-- Insert Student Card -->
-    <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md mb-8 overflow-hidden">
-        <h2 class="text-xl font-semibold text-white bg-green-700 dark:bg-green-800 p-4">Insert Student Data</h2>
-        <div class="p-6">
-            <form method="post" action="{% url 'add_student' %}" class="space-y-4">
-                {% csrf_token %}
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="studentId" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Student ID</label>
-                        <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" id="studentId" name="studentId" placeholder="Enter student ID">
-                    </div>
-                    <div>
-                        <label for="studentName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
-                        <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" id="studentName" name="name" placeholder="Enter name">
-                    </div>
-                    <div>
-                        <label for="studentAge" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Age</label>
-                        <input type="number" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" id="studentAge" name="age" placeholder="Enter age">
-                    </div>
-                    <div>
-                        <label for="studentGender" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Gender</label>
-                        <select class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" id="studentGender" name="gender">
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="studentPhone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone Number</label>
-                        <input type="tel" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" id="studentPhone" name="phone" placeholder="Enter phone number">
-                    </div>
-                    <div>
-                        <label for="studentEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
-                        <input type="email" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" id="studentEmail" name="email" placeholder="Enter Email">
-                    </div>
-                </div>
-                <div class="pt-4">
-                    <button type="submit" class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition duration-200">
-                        Submit
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Students Details Card -->
-    <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden">
-        <div class="flex justify-between items-center bg-green-700 dark:bg-green-800 p-4">
-            <h2 class="text-xl font-semibold text-white">Students Details</h2>
-            <span class="text-white">Total Students: {{ studentDB.count }}</span>
+  <!-- Students Page -->
+    <div id="students" class="page-container">
+      <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-lg font-semibold">Student Management</h3>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+            <i class="fas fa-plus mr-2"></i> Add Student
+          </button>
         </div>
         
-        <div class="p-6">
-            <div class="mb-6">
-                <input class="w-full md:w-1/3 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500" type="search" placeholder="Search students...">
-            </div>
-            
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                    <thead class="bg-gray-50 dark:bg-gray-600">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">No</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">ID</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Name</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Email</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Phone</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Age</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Gender</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600">
-                        {% for student in studentDB %}
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ forloop.counter }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">{{ student.studentID }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ student.name }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ student.email }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ student.phone }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ student.age }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ student.gender }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <div class="flex space-x-2">
-                                    <a href="{% url 'edit' student.id %}" class="text-green-600 dark:text-green-400 hover:text-green-900 dark:hover:text-green-300">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a href="{% url 'remove' student.id %}" class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-300">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="text-left text-gray-500 text-sm border-b">
+                <th class="pb-3">ID</th>
+                <th class="pb-3">Name</th>
+                <th class="pb-3">Class</th>
+                <th class="pb-3">Gender</th>
+                <th class="pb-3">Parent</th>
+                <th class="pb-3">Status</th>
+                <th class="pb-3 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b">
+                <td class="py-4">ST001</td>
+                <td class="py-4">Emma Johnson</td>
+                <td class="py-4">Grade 10-A</td>
+                <td class="py-4">Female</td>
+                <td class="py-4">Robert Johnson</td>
+                <td class="py-4"><span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Active</span></td>
+                <td class="py-4 text-right">
+                  <button class="text-blue-600 hover:text-blue-800 mr-2">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="text-red-600 hover:text-red-800">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-4">ST002</td>
+                <td class="py-4">James Smith</td>
+                <td class="py-4">Grade 9-B</td>
+                <td class="py-4">Male</td>
+                <td class="py-4">Jennifer Smith</td>
+                <td class="py-4"><span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Active</span></td>
+                <td class="py-4 text-right">
+                  <button class="text-blue-600 hover:text-blue-800 mr-2">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="text-red-600 hover:text-red-800">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-4">ST003</td>
+                <td class="py-4">Sophia Williams</td>
+                <td class="py-4">Grade 11-C</td>
+                <td class="py-4">Female</td>
+                <td class="py-4">Michael Williams</td>
+                <td class="py-4"><span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Pending</span></td>
+                <td class="py-4 text-right">
+                  <button class="text-blue-600 hover:text-blue-800 mr-2">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="text-red-600 hover:text-red-800">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-4">ST004</td>
+                <td class="py-4">Michael Brown</td>
+                <td class="py-4">Grade 8-A</td>
+                <td class="py-4">Male</td>
+                <td class="py-4">Sarah Brown</td>
+                <td class="py-4"><span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Active</span></td>
+                <td class="py-4 text-right">
+                  <button class="text-blue-600 hover:text-blue-800 mr-2">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="text-red-600 hover:text-red-800">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+        
+        <div class="mt-6 flex justify-between items-center">
+          <div class="text-sm text-gray-500">Showing 1 to 4 of 542 students</div>
+          <div class="flex space-x-2">
+            <button class="px-3 py-1 border rounded-md bg-gray-100">Previous</button>
+            <button class="px-3 py-1 border rounded-md bg-blue-600 text-white">1</button>
+            <button class="px-3 py-1 border rounded-md">2</button>
+            <button class="px-3 py-1 border rounded-md">3</button>
+            <button class="px-3 py-1 border rounded-md">Next</button>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-
-{% endblock content %}
+{% endblock %}

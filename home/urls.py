@@ -4,7 +4,7 @@ from home import views
 
 urlpatterns = [
 
-    path('', views.home, name='home'),
+    path('', views.admin_dashboard, name='admin_dashboard'),
    
   
 ]
