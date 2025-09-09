@@ -1,19 +1,85 @@
 {% extends "base/base.html" %}
 
 {% block content %}
-<div class="flex-1 p-6 bg-gray-50 dark:bg-dark-800 overflow-y-auto">
-    <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Settings</h1>
-    <p class="text-gray-600 dark:text-gray-300">Manage application settings, profile, and preferences.</p>
-
-    <div class="mt-6 space-y-4">
-        <div class="bg-white dark:bg-gray-900 p-4 rounded-lg shadow">
-            <h2 class="font-semibold text-gray-800 dark:text-white mb-2">Profile Settings</h2>
-            <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Edit Profile</button>
+    <!-- Settings Page -->
+    <div id="settings" class="page-container">
+      <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <h3 class="text-lg font-semibold mb-6">System Settings</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="border rounded-lg p-4">
+            <h4 class="font-medium text-gray-800 mb-4">School Information</h4>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm text-gray-600 mb-1">School Name</label>
+                <input type="text" value="Greenwood High School" class="w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+              </div>
+              <div>
+                <label class="block text-sm text-gray-600 mb-1">Address</label>
+                <input type="text" value="123 Education Street, City" class="w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+              </div>
+              <div>
+                <label class="block text-sm text-gray-600 mb-1">Phone</label>
+                <input type="text" value="+1 (555) 123-4567" class="w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+              </div>
+              <div>
+                <label class="block text-sm text-gray-600 mb-1">Email</label>
+                <input type="email" value="info@greenwood.edu" class="w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+              </div>
+            </div>
+          </div>
+          
+          <div class="border rounded-lg p-4">
+            <h4 class="font-medium text-gray-800 mb-4">System Configuration</h4>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm text-gray-600 mb-1">Academic Year</label>
+                <select class="w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                  <option>2022-2023</option>
+                  <option selected>2023-2024</option>
+                  <option>2024-2025</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm text-gray-600 mb-1">Date Format</label>
+                <select class="w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                  <option>MM/DD/YYYY</option>
+                  <option>DD/MM/YYYY</option>
+                  <option selected>YYYY-MM-DD</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm text-gray-600 mb-1">Time Zone</label>
+                <select class="w-full border rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                  <option selected>(UTC-05:00) Eastern Time</option>
+                  <option>(UTC-06:00) Central Time</option>
+                  <option>(UTC-07:00) Mountain Time</option>
+                  <option>(UTC-08:00) Pacific Time</option>
+                </select>
+              </div>
+              <div class="flex items-center justify-between pt-2">
+                <div>
+                  <label class="block text-sm text-gray-600 mb-1">Enable Notifications</label>
+                  <p class="text-xs text-gray-500">Receive alerts for important events</p>
+                </div>
+                <div class="relative inline-block w-12 h-6 rounded-full bg-gray-300">
+                  <input type="checkbox" class="sr-only" id="notifications" checked>
+                  <span class="absolute left-6 top-0.5 bg-white w-5 h-5 rounded-full transition-transform transform translate-x-0"></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="bg-white dark:bg-gray-900 p-4 rounded-lg shadow">
-            <h2 class="font-semibold text-gray-800 dark:text-white mb-2">System Preferences</h2>
-            <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Change Preferences</button>
+        
+        <div class="mt-6 flex justify-end">
+          <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition mr-3">
+            Cancel
+          </button>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+            Save Changes
+          </button>
         </div>
+      </div>
     </div>
-</div>
+
 {% endblock content %}

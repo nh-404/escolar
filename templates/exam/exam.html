@@ -1,64 +1,106 @@
 
-{% extends 'student/student.html' %}
-
+{% extends 'base/base.html' %}
+{% load static %}
 {% block title %}Exam{% endblock title %}
 
-{% block student %}
+{% block content %}
 
 
-       
-    <div class="container">
-        <h1>Exam Schedule</h1>
-
-        <!-- General Exam Information -->
-        <div class="exam-info">
-            <p><strong>Class:</strong> 10A</p>
-            <p><strong>Academic Year:</strong> 2024-2025</p>
-            <p><strong>Examination:</strong> Midterm Exams</p>
+  
+    <!-- Exams Page -->
+    <div id="exams" class="page-container">
+      <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-lg font-semibold">Exam Management</h3>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+            <i class="fas fa-plus mr-2"></i> Schedule Exam
+          </button>
         </div>
-
-        <!-- Exam Schedule Table -->
-        <table>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full">
             <thead>
-                <tr>
-                    <th>Subject</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Location</th>
-                </tr>
+              <tr class="text-left text-gray-500 text-sm border-b">
+                <th class="pb-3">Exam</th>
+                <th class="pb-3">Class</th>
+                <th class="pb-3">Subject</th>
+                <th class="pb-3">Date</th>
+                <th class="pb-3">Time</th>
+                <th class="pb-3">Room</th>
+                <th class="pb-3 text-right">Actions</th>
+              </tr>
             </thead>
             <tbody>
-                <tr class="subject-row">
-                    <td>Mathematics</td>
-                    <td>March 5, 2025</td>
-                    <td>9:00 AM - 11:00 AM</td>
-                    <td>Room 101</td>
-                </tr>
-                <tr>
-                    <td>Science</td>
-                    <td>March 6, 2025</td>
-                    <td>9:00 AM - 11:00 AM</td>
-                    <td>Room 102</td>
-                </tr>
-                <tr class="subject-row">
-                    <td>English</td>
-                    <td>March 7, 2025</td>
-                    <td>9:00 AM - 11:00 AM</td>
-                    <td>Room 103</td>
-                </tr>
-                <tr>
-                    <td>History</td>
-                    <td>March 8, 2025</td>
-                    <td>9:00 AM - 11:00 AM</td>
-                    <td>Room 104</td>
-                </tr>
-                <!-- Add more subjects as needed -->
+              <tr class="border-b">
+                <td class="py-4">Quarterly Exam</td>
+                <td class="py-4">Grade 10-A</td>
+                <td class="py-4">Mathematics</td>
+                <td class="py-4">Sep 30, 2023</td>
+                <td class="py-4">9:00 AM - 12:00 PM</td>
+                <td class="py-4">Room 101</td>
+                <td class="py-4 text-right">
+                  <button class="text-blue-600 hover:text-blue-800 mr-2">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="text-red-600 hover:text-red-800">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-4">Quarterly Exam</td>
+                <td class="py-4">Grade 10-A</td>
+                <td class="py-4">Science</td>
+                <td class="py-4">Oct 2, 2023</td>
+                <td class="py-4">9:00 AM - 12:00 PM</td>
+                <td class="py-4">Room 102</td>
+                <td class="py-4 text-right">
+                  <button class="text-blue-600 hover:text-blue-800 mr-2">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="text-red-600 hover:text-red-800">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-4">Quarterly Exam</td>
+                <td class="py-4">Grade 9-B</td>
+                <td class="py-4">Mathematics</td>
+                <td class="py-4">Sep 30, 2023</td>
+                <td class="py-4">1:00 PM - 4:00 PM</td>
+                <td class="py-4">Room 103</td>
+                <td class="py-4 text-right">
+                  <button class="text-blue-600 hover:text-blue-800 mr-2">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="text-red-600 hover:text-red-800">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-4">Quarterly Exam</td>
+                <td class="py-4">Grade 9-B</td>
+                <td class="py-4">Science</td>
+                <td class="py-4">Oct 2, 2023</td>
+                <td class="py-4">1:00 PM - 4:00 PM</td>
+                <td class="py-4">Room 104</td>
+                <td class="py-4 text-right">
+                  <button class="text-blue-600 hover:text-blue-800 mr-2">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="text-red-600 hover:text-red-800">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
             </tbody>
-        </table>
+          </table>
+        </div>
+      </div>
     </div>
+    
 
 
-
-
-
-    {% endblock student %}
+    {% endblock content %}
