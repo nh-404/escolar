@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-#from student.models import Student
+from student.models import Student
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -13,33 +13,21 @@ from django.contrib import messages
 
 #     return render(request, 'student/studentList.html')
 
+@login_required(login_url='login')
+def add_student(request):
+    if request.method == 'POST':
+        student = Student(
+            full_name=request.POST.get('full_name'),
+            email=request.POST.get('email'),
+            phone=request.POST.get('phone'),
+            address=request.POST.get('address'),
+            dob=request.POST.get('dob') or None,
+            photo=request.FILES.get('photo'),
+        )
+        student.save()  #
+        return redirect('home')
 
-# @login_required(login_url='login')
-# def add_student(request):
-
-    
-#     if request.method == 'POST':
-
-#         name = request.POST.get('name')
-#         email = request.POST.get('email')
-#         phone = request.POST.get('phone')
-#         age = request.POST.get('age')
-#         gender = request.POST.get('gender')
-#         studentID = request.POST.get('studentId')
-        
-#         inserT = Student(
-#             name=name, 
-#             email=email, 
-#             phone=phone, 
-#             age=age, 
-#             gender=gender, 
-#             studentID=studentID
-#         )
-        
-#         inserT.save()
-#         return redirect('studentList')  
-
-#     return render(request, 'student/studentList.html')
+    return render(request, 'student/student_add.html')
 
 
 # @login_required(login_url='login')
@@ -72,9 +60,9 @@ from django.contrib import messages
 
 
 @login_required(login_url='login')
-def studentDashboard(request):
+def student_dashboard(request):
 
-    return render(request, 'student/student.html')
+    return render(request, 'base/student_dashboard.html')
 
 
 

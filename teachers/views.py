@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-# from teachers.models import Teacher
+from teachers.models import Teacher
 from django.contrib.auth.decorators import login_required
 # from django.contrib import messages
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 # def teacherList(request):
 
 #     teacherDB = Teacher.objects.all()
@@ -16,38 +16,34 @@ from django.contrib.auth.decorators import login_required
 #         })
 
 @login_required(login_url='login')
-def teacherDashboard(request):
+def teacher_dashboard(request):
 
-    return render(request, 'teacher/teacher.html')
-
-
-
-# def add_teacher(request):
+    return render(request, 'base/teacher_dashboard.html')
 
 
-#     if request.method == 'POST':
 
-#         name = request.POST.get('name')
-#         email = request.POST.get('email')
-#         phone = request.POST.get('phone')
-#         age = request.POST.get('age')
-#         gender = request.POST.get('gender')
-#         teacherID = request.POST.get('teacherId')
+
+
+def add_teacher(request):
+
+
+    if request.method == 'POST':
+
+        teacher = Teachers.objects.create(
+
+            full_name = request.POST.get('full_name'),
+            email = request.POST.get('email'),
+            phone = request.POST.get('phone'),
+            address = request.POST.get('address'),
+            dob = request.POST.get('dob'),
+            photo = request.FILES.get('photo'),
+        )
+        teacher.save()
         
-#         newTeacher = Teacher.objects.create(
-#             name=name, 
-#             email=email, 
-#             phone=phone, 
-#             age=age, 
-#             gender=gender, 
-#             teacherID=teacherID
-#         )
-        
-#         newTeacher.save()
-#         return redirect('teacherList')
+        return redirect('home')
 
 
-#     return render(request, 'teacher/teacherList.html')
+    return render(request, 'teacher/teacher_add.html')
  
 
 

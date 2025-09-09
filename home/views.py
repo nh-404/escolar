@@ -14,7 +14,7 @@ def home(request):
     # teacher_count = Teacher.objects.count() 
 
 
-    return render(request, 'base/index.html')
+    return render(request, 'base/admin.html')
     
     
     #  {
