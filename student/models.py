@@ -1,28 +1,15 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.utils.crypto import get_random_string
-from django.contrib.auth import get_user_model
+from django.conf import settings
 
-User = get_user_model()
-
-
-def generate_student_id():
-    return 'STU-' + get_random_string(6).upper()
 
 
 class Student(models.Model):
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        related_name="student_profile",
-        null=True,
-        blank=True
-    )
-    student_id = models.CharField(
-        max_length=20,
-        unique=True,
-        editable=False
-    )
+
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    roll_number = models.CharField(max_length=20, unique=True)
+    class_name = models.CharField(max_length=50)
+
 
     full_name = models.CharField(max_length=150)
     photo = models.ImageField(upload_to="students/", blank=True, null=True)
@@ -31,36 +18,8 @@ class Student(models.Model):
     email = models.EmailField(max_length=254, unique=True)
     dob = models.DateField(_("Date of Birth"), null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+  
 
-    def save(self, *args, **kwargs):
-        from django.contrib.auth import get_user_model
-        UserModel = get_user_model()
-
-        # Auto-create user if not provided
-        if not self.user_id:  # use user_id instead of self.user to avoid triggering RelatedObjectDoesNotExist
-            base_username = self.email if self.email else f"student_{generate_student_id()}"
-            username_value = base_username
-            counter = 1
-
-            # Ensure unique username
-            while UserModel.objects.filter(username=username_value).exists():
-                username_value = f"{base_username}_{counter}"
-                counter += 1
-
-            self.user = UserModel.objects.create_user(
-                username=username_value,
-                email=self.email if self.email else "",
-                password="student123",
-                role="student",
-            )
-        else:
-            # Ensure role consistency
-            if self.user.role != "student":
-                self.user.role = "student"
-                self.user.save()
-
-        super().save(*args, **kwargs)
-
-
+    
     def __str__(self):
-        return f"{self.full_name} ({self.student_id})"
+        return self.user.username

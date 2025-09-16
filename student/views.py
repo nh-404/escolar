@@ -70,10 +70,10 @@ def student_dashboard(request):
 
 
 
-# @login_required(login_url='login')
-# def classes(request):
+@login_required(login_url='login')
+def classes(request):
 
-#     return render(request, 'classes/class.html')
+    return render(request, 'student/class/stu_class.html')
 
 
 # @login_required(login_url='login')

@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="p-6">
+  <h1 class="text-2xl font-bold text-gray-800 mb-4">Set Timetable</h1>
+  <form method="post" class="space-y-4">
+    {% csrf_token %}
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Class</label>
+      <input type="text" name="class" class="mt-1 w-full border rounded-lg p-2">
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Day</label>
+      <input type="text" name="day" class="mt-1 w-full border rounded-lg p-2">
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Subject</label>
+      <input type="text" name="subject" class="mt-1 w-full border rounded-lg p-2">
+    </div>
+    <button type="submit" class="px-4 py-2 bg-pink-600 text-white rounded-lg">Save Timetable</button>
+  </form>
+</div>
+{% endblock %}
