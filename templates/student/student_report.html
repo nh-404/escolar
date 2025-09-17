@@ -1,0 +1,55 @@
+{% extends 'base/base_student.html' %}
+{% block student_dashboard %}
+<div class="p-6">
+  <h1 class="text-2xl font-bold mb-6">Reports</h1>
+
+  <!-- Academic Performance -->
+  <div class="bg-white shadow rounded-lg p-6 mb-8">
+    <h2 class="text-lg font-semibold mb-4">Academic Performance</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div class="p-4 rounded-lg bg-blue-50 text-center hover-lift">
+        <p class="text-gray-500">Overall Grade</p>
+        <p class="text-3xl font-bold text-blue-600">A</p>
+      </div>
+      <div class="p-4 rounded-lg bg-green-50 text-center hover-lift">
+        <p class="text-gray-500">Attendance %</p>
+        <p class="text-3xl font-bold text-green-600">92%</p>
+      </div>
+      <div class="p-4 rounded-lg bg-yellow-50 text-center hover-lift">
+        <p class="text-gray-500">Completed Assignments</p>
+        <p class="text-3xl font-bold text-yellow-600">48</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subject-wise Marks -->
+  <div class="bg-white shadow rounded-lg overflow-hidden">
+    <table class="w-full text-sm text-left">
+      <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
+        <tr>
+          <th class="px-6 py-3">Subject</th>
+          <th class="px-6 py-3">Average Marks</th>
+          <th class="px-6 py-3">Grade</th>
+          <th class="px-6 py-3">Teacher’s Remarks</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-6 py-4">Mathematics</td>
+          <td class="px-6 py-4">85 / 100</td>
+          <td class="px-6 py-4 text-green-600 font-semibold">A</td>
+          <td class="px-6 py-4">Excellent progress</td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4">Science</td>
+          <td class="px-6 py-4">78 / 100</td>
+          <td class="px-6 py-4 text-yellow-600 font-semibold">B+</td>
+          <td class="px-6 py-4">Needs focus on lab work</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+{% endblock student_dashboard %}

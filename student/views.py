@@ -5,9 +5,22 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
-User = get_user_model()
+
+@login_required(login_url='login')
+def student_dashboard(request):
+
+    return render(request, 'student/student_main.html')
 
 
+
+@login_required(login_url='login')
+def student_profile(request):
+
+    return render(request, 'student/student_profile.html')
+
+
+
+@login_required(login_url='login')
 def studentList(request):
 
     total_student = Student.objects.all()
@@ -16,12 +29,13 @@ def studentList(request):
         'total_student':total_student,
     }
  
-
     return render(request, 'student/studentList.html',context)
 
 
 
+User = get_user_model()
 
+@login_required(login_url='login')
 def add_student(request):
 
     if request.method == 'POST':
@@ -99,26 +113,69 @@ def add_student(request):
 
 
 
-def student_dashboard(request):
 
-    return render(request, 'student/student_main.html')
+@login_required(login_url='login')
+def student_attendence(request):
 
-
-
-
+    return render(request, 'student/student_attendence.html')
 
 
 
 @login_required(login_url='login')
-def classes(request):
+def student_timetable(request):
 
-    return render(request, 'student/class/stu_class.html')
+    return render(request, 'student/student_timetable.html')
 
 
-# @login_required(login_url='login')
-# def result(request):
 
-#     return render(request, 'result/result.html')
+@login_required(login_url='login')
+def student_exam(request):
+
+    return render(request, 'student/exam/student_exam.html')
+
+
+
+@login_required(login_url='login')
+def student_report(request):
+
+    return render(request, 'student/student_report.html')
+
+
+
+@login_required(login_url='login')
+def student_fees(request):
+
+    return render(request, 'student/student_fees.html')
+
+
+
+@login_required(login_url='login')
+def student_libray(request):
+
+    return render(request, 'student/student_libray.html')
+
+
+
+
+def student_subects(request):
+
+    return render(request, 'student/student_subects.html')
+
+
+
+@login_required(login_url='login')
+def student_class(request):
+
+    return render(request, 'student/class/student_class.html')
+
+
+
+@login_required(login_url='login')
+def student_result(request):
+
+    return render(request, 'student/result/student_result.html')
+
+
 
 # @login_required(login_url='login')
 # def exam(request):

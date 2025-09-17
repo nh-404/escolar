@@ -86,29 +86,6 @@ def add_teacher(request):
 
     return render(request, "teacher/add_teacher.html")
 
-# def add_teacher(request):
-
-
-#     if request.method == 'POST':
-
-#         teacher = Teacher.objects.create(
-
-#             subject    =request.POST.get('subject'),
-#             teacher_id =   request.POST.get('teacher_id'),
-#             full_name = request.POST.get('full_name'),
-#             email = request.POST.get('email'),
-#             phone = request.POST.get('phone'),
-#             address = request.POST.get('address'),
-#             dob = request.POST.get('dob'),
-#             photo = request.FILES.get('photo'),
-#         )
-#         teacher.save()
-        
-#         return redirect('home')
-
-
-#     return render(request, 'teacher/teacher_add.html')
- 
 
 
 # @login_required(login_url='login')
@@ -150,12 +127,17 @@ def add_teacher(request):
 #     return render(request, 'classes/total_classes.html') 
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
+def teacher_class(request):
 
-# def t_classes(request):
+
+    return render(request, 'teacher/teacher_class.html') 
+
+@login_required(login_url='login')
+def teacher_attendance(request):
 
 
-#     return render(request, 'teacher_temp/tclass.html') 
+    return render(request, 'teacher/teacher_attendance.html') 
 
 
 
@@ -169,13 +151,22 @@ def add_teacher(request):
 
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 
-# def t_exam(request):
+def teacher_exam(request):
+
+
+    return render(request, 'teacher/teacher_exam.html') 
 
 
 
-#     return render(request, 'teacher_temp/texam.html') 
+
+@login_required(login_url='login')
+
+def teacher_profile(request):
+
+
+    return render(request, 'teacher/teacher_profile.html') 
 
 
 
