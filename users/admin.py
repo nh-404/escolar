@@ -45,3 +45,4 @@ from .models import User
 #     can_delete = False
 #     extra = 0
 
+admin.site.register(User, UserAdmin)

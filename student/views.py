@@ -1,31 +1,70 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from student.models import Student
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
+User = get_user_model()
 
 
 def studentList(request):
+
+    total_student = Student.objects.all()
+
+    context = {
+        'total_student':total_student,
+    }
  
 
-    return render(request, 'student/studentList.html')
+    return render(request, 'student/studentList.html',context)
 
 
 
 
 def add_student(request):
+
     if request.method == 'POST':
-        student = Student(
-            full_name=request.POST.get('full_name'),
-            email=request.POST.get('email'),
-            phone=request.POST.get('phone'),
-            address=request.POST.get('address'),
-            dob=request.POST.get('dob') or None,
-            photo=request.FILES.get('photo'),
-        )
-        student.save()  #
-        return redirect('home')
+
+        full_name = request.POST.get("full_name")
+        roll_number = request.POST.get("student_id").strip()
+        class_name = request.POST.get("student_class")
+        address = request.POST.get("address")
+        phone = request.POST.get("phone").strip()
+        email = request.POST.get("email")
+        dob = request.POST.get("dob")
+        photo = request.FILES.get("photo")
+
+
+        username = roll_number.lower()
+        password = phone
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "এই Student ID দিয়ে account আগেই আছে।")
+            return redirect("add_student")
+
+        user= User.objects.create_user(
+            username=username, 
+            password=password,
+            role='Student'
+            )
+        user.first_name=full_name
+        user.email=email
+        user.save()
+
+        student = Student.objects.create(            
+            user=user,
+            full_name=full_name,
+            roll_number=roll_number,
+            class_name=class_name,
+            photo=photo,
+            address=address,
+            phone=phone,
+            email=email,
+            dob=dob if dob else None,)
+
+         
+        return redirect('add_student')
 
     return render(request, 'student/student_add.html')
 
