@@ -1,0 +1,45 @@
+
+{% extends 'base/base_student.html' %}
+
+{% block student_dashboard %}
+
+<div class="p-6">
+
+
+  <h1 class="text-2xl font-bold mb-6">Timetable</h1>
+
+  <div class="bg-white shadow rounded-lg overflow-hidden">
+    <table class="w-full text-sm text-left">
+      <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
+        <tr>
+          <th class="px-6 py-3">Day</th>
+          <th class="px-6 py-3">9:00 - 10:00</th>
+          <th class="px-6 py-3">10:00 - 11:00</th>
+          <th class="px-6 py-3">11:15 - 12:15</th>
+          <th class="px-6 py-3">1:15 - 2:15</th>
+          <th class="px-6 py-3">2:15 - 3:15</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-6 py-4 font-medium">Monday</td>
+          <td class="px-6 py-4">Math</td>
+          <td class="px-6 py-4">English</td>
+          <td class="px-6 py-4">Science</td>
+          <td class="px-6 py-4">History</td>
+          <td class="px-6 py-4">PE</td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 font-medium">Tuesday</td>
+          <td class="px-6 py-4">Biology</td>
+          <td class="px-6 py-4">Chemistry</td>
+          <td class="px-6 py-4">Math</td>
+          <td class="px-6 py-4">Geography</td>
+          <td class="px-6 py-4">Art</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock student_dashboard %}

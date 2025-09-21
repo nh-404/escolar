@@ -32,7 +32,7 @@
         <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
           <i class="fas fa-book-open text-white"></i>
         </div>
-        <h2 class="text-lg font-semibold hidden sm:block">School Manager</h2>
+        <h2 class="text-lg font-semibold hidden sm:block">Escolar</h2>
       </div>
     </div>
     
@@ -75,7 +75,7 @@
           <a href="{% url 'settings' %}" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 transition">
             <i class="fas fa-cog text-gray-500"></i> Settings
           </a>
-          <a href="{% url 'settings' %}" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 transition">
+          <a href="{% url 'teacher_profile' %}" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 transition">
             <i class="fas fa-user text-gray-500"></i> My Profile
           </a>
           <div class="border-t mt-1"></div>
@@ -105,17 +105,12 @@
           <p class="text-xs uppercase font-semibold text-gray-500">Academics</p>
         </div>
         
-        <a href="{% url 'classes' %}" 
+        <a href="{% url 'teacher_classes' %}" 
            class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
           <i class="fas fa-school text-gray-500 group-hover:text-blue-600 w-5"></i>
           <span>Classes</span>
         </a>
         
-        <a href="{% url 'settings' %}" 
-           class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
-          <i class="fas fa-book text-gray-500 group-hover:text-blue-600 w-5"></i>
-          <span>Subjects</span>
-        </a>
         
         <a href="{% url 'settings' %}" 
            class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
@@ -127,13 +122,13 @@
           <p class="text-xs uppercase font-semibold text-gray-500">Administration</p>
         </div>
         
-        <a href="{% url 'attendance' %}" 
+        <a href="{% url 'teacher_student_attendence' %}" 
            class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
           <i class="fas fa-user-check text-gray-500 group-hover:text-blue-600 w-5"></i>
           <span>Attendance</span>
         </a>
         
-        <a href="{% url 'exam' %}" 
+        <a href="{% url 'teacher_exam' %}" 
            class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
           <i class="fas fa-clipboard-list text-gray-500 group-hover:text-blue-600 w-5"></i>
           <span>Exams</span>

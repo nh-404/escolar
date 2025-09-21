@@ -1,0 +1,88 @@
+{% extends 'base/base_student.html' %}
+{% block student_dashboard %}
+<div class="p-6">
+  <h1 class="text-2xl font-bold mb-6">Results</h1>
+
+  <!-- Summary Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-4 gap-6 mb-8">
+    <div class="bg-white shadow rounded-lg p-6 text-center hover-lift">
+      <p class="text-gray-500">GPA</p>
+      <p class="text-2xl font-bold text-blue-600">3.8</p>
+    </div>
+    <div class="bg-white shadow rounded-lg p-6 text-center hover-lift">
+      <p class="text-gray-500">Total Subjects</p>
+      <p class="text-2xl font-bold text-green-600">6</p>
+    </div>
+    <div class="bg-white shadow rounded-lg p-6 text-center hover-lift">
+      <p class="text-gray-500">Highest Marks</p>
+      <p class="text-2xl font-bold text-yellow-600">95</p>
+    </div>
+    <div class="bg-white shadow rounded-lg p-6 text-center hover-lift">
+      <p class="text-gray-500">Lowest Marks</p>
+      <p class="text-2xl font-bold text-red-600">68</p>
+    </div>
+  </div>
+
+  <!-- Subject Results Table -->
+  <div class="bg-white shadow rounded-lg overflow-hidden">
+    <table class="w-full text-sm text-left">
+      <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
+        <tr>
+          <th class="px-6 py-3">Subject</th>
+          <th class="px-6 py-3">Marks</th>
+          <th class="px-6 py-3">Grade</th>
+          <th class="px-6 py-3">Progress</th>
+          <th class="px-6 py-3">Remarks</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr>
+          <td class="px-6 py-4">Mathematics</td>
+          <td class="px-6 py-4">88 / 100</td>
+          <td class="px-6 py-4 font-semibold text-green-600">A</td>
+          <td class="px-6 py-4">
+            <div class="w-full bg-gray-200 h-2 rounded-full">
+              <div class="bg-green-600 h-2 rounded-full" style="width:88%"></div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-gray-500">Excellent</td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4">Science</td>
+          <td class="px-6 py-4">75 / 100</td>
+          <td class="px-6 py-4 font-semibold text-yellow-600">B+</td>
+          <td class="px-6 py-4">
+            <div class="w-full bg-gray-200 h-2 rounded-full">
+              <div class="bg-yellow-600 h-2 rounded-full" style="width:75%"></div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-gray-500">Good</td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4">History</td>
+          <td class="px-6 py-4">68 / 100</td>
+          <td class="px-6 py-4 font-semibold text-red-600">C+</td>
+          <td class="px-6 py-4">
+            <div class="w-full bg-gray-200 h-2 rounded-full">
+              <div class="bg-red-600 h-2 rounded-full" style="width:68%"></div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-gray-500">Needs Improvement</td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4">English</td>
+          <td class="px-6 py-4">92 / 100</td>
+          <td class="px-6 py-4 font-semibold text-green-600">A+</td>
+          <td class="px-6 py-4">
+            <div class="w-full bg-gray-200 h-2 rounded-full">
+              <div class="bg-green-600 h-2 rounded-full" style="width:92%"></div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-gray-500">Outstanding</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock student_dashboard %}
