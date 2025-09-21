@@ -10,10 +10,10 @@ urlpatterns = [
      path('student/', views.student_profile, name='student_profile'),
 
 
-     path('studentt/', views.studentList, name='studentList'),
+     path('studentt/', views.student_list, name='student_list'),
      path('add_student/', views.add_student, name='add_student'),
-#     path('edit/<int:id>/', views.edit, name='edit'),  
-#     path('remove/<int:id>/', views.remove, name='remove'), 
+    path('edit_student/<int:id>/', views.edit_student, name='edit_student'),  
+    path('remove_student/<int:id>/', views.remove_student, name='remove_student'), 
      
 
     path('student_timetable', views.student_timetable, name='student_timetable'),

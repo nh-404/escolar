@@ -1,0 +1,74 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Teacher Attendance{% endblock %}
+
+{% block content %}
+  <!-- Teacher Attendance Page -->
+  <div id="teacher-attendance" class="page-container">
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-lg font-semibold">Teacher Attendance</h3>
+        <a href="{% url 'teacher_list' %}">
+          <button class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition">
+            <i class="fas fa-arrow-left mr-2"></i> Back
+          </button>
+        </a>
+      </div>
+
+      <!-- Attendance Form -->
+      <form action="{% url 'admin_teacher_attendence' %}" method="POST" class="space-y-6">
+        {% csrf_token %}
+        
+        <!-- Date Picker -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+          <input type="date" name="date" value="{{ today|date:'Y-m-d' }}"
+                 class="w-full md:w-1/3 border rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+        </div>
+
+        <!-- Attendance Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="text-left text-gray-500 text-sm border-b">
+                <th class="pb-3">No.</th>
+                <th class="pb-3">Name</th>
+                <th class="pb-3">Subject</th>
+                <th class="pb-3">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for teacher in teachers %}
+              <tr class="border-b">
+                <td class="py-3">{{ forloop.counter }}</td>
+                <td class="py-3">{{ teacher.full_name }}</td>
+                <td class="py-3">{{ teacher.subject }}</td>
+                <td class="py-3">
+                  <select name="attendance_{{ teacher.id }}" 
+                          class="border rounded-md px-2 py-1 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <option value="Present">Present</option>
+                    <option value="Absent">Absent</option>
+                    <option value="Leave">Leave</option>
+                  </select>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="4" class="py-4 text-center text-gray-500">No teachers found.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex justify-end space-x-3 mt-6">
+          <a href="{% url 'admin_dashboard' %}" 
+             class="px-4 py-2 border rounded-md bg-gray-100 hover:bg-gray-200 transition">Cancel</a>
+          <button type="submit" 
+                  class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">Save Attendance</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

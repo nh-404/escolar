@@ -1,10 +1,11 @@
 # views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from .models import Teacher 
-
+from datetime import date
+from student.models import Student, StudentAttendance
 
 
 @login_required(login_url='login')
@@ -88,35 +89,39 @@ def add_teacher(request):
 
 
 
-# @login_required(login_url='login')
-# def teacher_Edit(request, id):
+@login_required(login_url='login')
+def teacher_Edit(request, id):
 
-#     teacher = get_object_or_404(Teacher, id=id)
+    teacher = get_object_or_404(Teacher, id=id)
 
-#     if request.method == 'POST':
-#         teacher.teacherID = request.POST['teacherId']
-#         teacher.name = request.POST['name']
-#         teacher.age = request.POST['age']
-#         teacher.gender = request.POST['gender']
-#         teacher.phone = request.POST['phone']
-#         teacher.email = request.POST['email']
+    if request.method == 'POST':
 
-#         teacher.save()
+        teacher.full_name = request.POST.get("full_name")
+        teacher.subject = request.POST.get("subject")
+        teacher.address = request.POST.get("address")
+        teacher.phone = request.POST.get("phone").strip()
+        teacher.email = request.POST.get("email")
+        teacher.dob = request.POST.get("dob")
         
-#         return redirect('teacherList')  # Assuming 'index' is the name of your homepage view
+        if request.FILES.get("photo"):
+            teacher.photo = request.FILES.get("photo")
+
+        teacher.save()
+        
+        return redirect('teacher_list')  # Assuming 'index' is the name of your homepage view
 
 
-#     return render(request, 'teacher/teacheredit.html', {'teacher': teacher})
+    return render(request, 'teacher/edit_teacher.html', {'teacher': teacher})
 
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 
-# def teacher_Remove(request,id):
+def teacher_Remove(request,id):
 
-#     teacherRm = Teacher.objects.get(id=id)
-#     teacherRm.delete()
-#     return redirect('teacherList')   
+    remove_teacher = Teacher.objects.get(id=id)
+    remove_teacher.delete()
+    return redirect('teacherList')   
 
 
 # @login_required(login_url='login')
@@ -169,9 +174,44 @@ def teacher_profile(request):
     return render(request, 'teacher/teacher_profile.html') 
 
 
+@login_required(login_url='login')
 
-# @login_required(login_url='login')
+def teacher_student_attend_list(request):
 
-# def t_assignment(request):
+    total_student_attend = StudentAttendance.objects.all()
 
-#     return render(request, 'teacher_temp/tassignment.html') 
+    context = {
+        'total_student_attend':total_student_attend,
+    }   
+
+
+
+    return render(request, 'teacher/teacher_student_attend_list.html',context) 
+
+
+
+
+
+@login_required(login_url='login')
+def teacher_student_attendence(request):
+
+    students = Student.objects.all()
+
+    if request.method == 'POST':
+         selected_date = request.POST.get("date") or date.today()
+
+         for student in students:
+            status = request.POST.get(f"attendance_{student.id}")
+
+            if status:
+                StudentAttendance.objects.update_or_create(
+                    student=student,
+                    date=selected_date,
+                    defaults={"status": status},
+                )
+         return redirect('teacher_student_attend_list')
+
+
+    return render(request, 'teacher/teacher_attendance.html',{
+                "students": students,
+                "today": date.today(),})

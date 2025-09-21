@@ -121,7 +121,7 @@
           <p class="text-sm font-medium text-gray-700">Add Student</p>
         </a>
         
-        <a href="{% url 'studentList' %}" class="p-4 border-2 border-dashed border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition text-center block">
+        <a href="{% url 'student_list' %}" class="p-4 border-2 border-dashed border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition text-center block">
           <i class="fas fa-user-graduate text-2xl text-green-500 mb-2"></i>
           <p class="text-sm font-medium text-gray-700"> Student List</p>
         </a>
@@ -132,9 +132,14 @@
           <p class="text-sm font-medium text-gray-700">Add Teacher</p>
         </a>
         
-        <a href="{% url 'add_student' %}" class="p-4 border-2 border-dashed border-gray-200 rounded-lg hover:border-yellow-300 hover:bg-yellow-50 transition text-center block">
+        <a href="{% url 'admin_teacher_attendence' %}" class="p-4 border-2 border-dashed border-gray-200 rounded-lg hover:border-yellow-300 hover:bg-yellow-50 transition text-center block">
           <i class="fas fa-user-check text-2xl text-yellow-500 mb-2"></i>
           <p class="text-sm font-medium text-gray-700">Teacher Attendance</p>
+        </a>
+        
+        <a href="{% url 'admin_teacher_attendence_list' %}" class="p-4 border-2 border-dashed border-gray-200 rounded-lg hover:border-yellow-300 hover:bg-yellow-50 transition text-center block">
+          <i class="fas fa-user-check text-2xl text-yellow-500 mb-2"></i>
+          <p class="text-sm font-medium text-gray-700">Teacher Attendance List</p>
         </a>
         
         <!-- Academic -->

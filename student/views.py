@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from student.models import Student
+from student.models import Student, StudentAttendance
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -21,7 +21,7 @@ def student_profile(request):
 
 
 @login_required(login_url='login')
-def studentList(request):
+def student_list(request):
 
     total_student = Student.objects.all()
 
@@ -78,37 +78,41 @@ def add_student(request):
             dob=dob if dob else None,)
 
          
-        return redirect('studentList')
+        return redirect('student_list')
 
     return render(request, 'student/student_add.html')
 
 
-# @login_required(login_url='login')
-# def edit(request, id):
+@login_required(login_url='login')
 
-#     student = get_object_or_404(Student, id=id)
+def edit_student(request, id):
+    student = get_object_or_404(Student, id=id)
 
-#     if request.method == 'POST':
-#         student.studentID = request.POST['studentId']
-#         student.name = request.POST['name']
-#         student.age = request.POST['age']
-#         student.gender = request.POST['gender']
-#         student.phone = request.POST['phone']
-#         student.email = request.POST['email']
-#         student.save()
-#         return redirect('studentList')  # Assuming 'index' is the name of your homepage view
+    if request.method == 'POST':
+        # Map form inputs directly to model fields
+        student.full_name = request.POST.get("full_name")
+        student.class_name = request.POST.get("class_name")   
+        student.address = request.POST.get("address")
+        student.phone = request.POST.get("phone", "").strip()
+        student.email = request.POST.get("email")
+        student.dob = request.POST.get("dob")
+        student.status = request.POST.get("status")
 
-#     return render(request, 'base/edit.html', {'student': student})
+        # Handle photo only if new file uploaded
+        if request.FILES.get("photo"):
+            student.photo = request.FILES.get("photo")
 
+        student.save()
+        return redirect('student_list')  
 
+    return render(request, 'student/edit_student.html', {"student": student})
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
+def remove_student(request,id):
 
-# def remove(request,id):
-
-#     rm = Student.objects.get(id=id)
-#     rm.delete()
-#     return redirect('studentList')  
+    remove_student = Student.objects.get(id=id)
+    remove_student.delete()
+    return redirect('student_list')  
 
 
 
@@ -116,6 +120,8 @@ def add_student(request):
 
 @login_required(login_url='login')
 def student_attendence(request):
+
+    
 
     return render(request, 'student/student_attendence.html')
 

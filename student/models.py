@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 
@@ -30,6 +31,50 @@ class Student(models.Model):
     
     def __str__(self):
         return self.user.username
+
+
+
+class StudentAttendance(models.Model):
+    STATUS_CHOICES = (
+        ("Present", "Present"),
+        ("Absent", "Absent"),
+        ("Leave", "Leave"),
+    )
+
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="attendance")
+    date = models.DateField(default=timezone.now)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="Present")
+
+    class Meta:
+        unique_together = ("student", "date")  # prevent duplicate entries
+        ordering = ["-date"]
+
+    def __str__(self):
+        return f"{self.student.full_name} - {self.date} - {self.status}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
