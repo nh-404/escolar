@@ -39,11 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account.apps.AccountConfig',
+    
 
     #__custom apps__
 
     'home',
+    'users',
     'student',
     'teachers',
     'classes',
@@ -51,6 +52,9 @@ INSTALLED_APPS = [
     'escolar_settings'
 
 ]
+
+AUTH_USER_MODEL = "users.User"
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

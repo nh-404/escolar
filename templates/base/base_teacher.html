@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>School Management - UI Bundle</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .scrollbar-hide::-webkit-scrollbar { display: none }
+    .sidebar-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .dropdown-enter { animation: dropdownEnter 0.2s ease-out forwards; }
+    @keyframes dropdownEnter {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hover-lift { transition: transform 0.2s, box-shadow 0.2s; }
+    .hover-lift:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+<!-- ======= BASE LAYOUT ======= -->
+<div class="min-h-screen flex flex-col">
+  <!-- Topbar -->
+  <header class="bg-white border-b sticky top-0 z-20 p-4 flex items-center justify-between shadow-sm">
+    <!-- Left: Mobile menu + Title -->
+    <div class="flex items-center gap-4">
+      <button id="mobileMenuBtn" class="md:hidden px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 transition">
+        <i class="fas fa-bars text-gray-600"></i>
+      </button>
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
+          <i class="fas fa-book-open text-white"></i>
+        </div>
+        <h2 class="text-lg font-semibold hidden sm:block">Escolar</h2>
+      </div>
+    </div>
+    
+    <!-- Right: Search + Profile -->
+    <div class="flex items-center gap-4">
+      <!-- Search -->
+      <div class="relative hidden sm:block">
+        <span class="absolute left-3 top-2.5 text-gray-400">
+          <i class="fas fa-search"></i>
+        </span>
+        <input 
+          type="text"
+          placeholder="Search students, classes..." 
+          class="border rounded-lg pl-10 pr-4 py-2 w-48 md:w-64 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+        />
+      </div>
+      
+      <!-- Notifications -->
+      <button class="relative p-2 rounded-full hover:bg-gray-100 transition">
+        <i class="fas fa-bell text-gray-600"></i>
+        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+      </button>
+      
+      <!-- Profile Dropdown -->
+      <div class="relative" id="profileDropdown">
+        <button id="profileBtn" class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-1 rounded-md transition">
+          <div class="text-right hidden md:block">
+            <p class="text-sm font-medium">{{ user.username }}</p>
+            <p class="text-xs text-gray-500">{{ user.email }}</p>
+          </div>
+          <img src="https://i.pravatar.cc/40" alt="avatar" class="w-10 h-10 rounded-full border-2 border-white shadow-sm"/>
+        </button>
+        
+        <!-- Dropdown -->
+        <div id="dropdownMenu" class="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg hidden dropdown-enter">
+          <div class="border-b px-4 py-3">
+            <p class="font-medium">{{ user.username }}</p>
+            <p class="text-sm text-gray-500">{{ user.email }}</p>
+          </div>
+          <a href="{% url 'settings' %}" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 transition">
+            <i class="fas fa-cog text-gray-500"></i> Settings
+          </a>
+          <a href="{% url 'teacher_profile' %}" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 transition">
+            <i class="fas fa-user text-gray-500"></i> My Profile
+          </a>
+          <div class="border-t mt-1"></div>
+          <a href="{% url 'logout' %}" class="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 transition">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <div class="flex flex-1 overflow-hidden">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-72 bg-white border-r flex flex-col sidebar-transition transform -translate-x-full md:translate-x-0 fixed md:sticky top-0 h-full z-10 md:z-auto">
+
+      <!-- Navigation -->
+      <nav class="flex-1 px-4 py-6 space-y-1 overflow-auto scrollbar-hide">
+        <a href="{% url 'teacher_dashboard' %}" 
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
+          <i class="fas fa-home text-gray-500 group-hover:text-blue-600 w-5"></i>
+          <span>Dashboard</span>
+        </a>
+        
+      
+        
+        <div class="pt-4 pb-2 px-3">
+          <p class="text-xs uppercase font-semibold text-gray-500">Academics</p>
+        </div>
+        
+        <a href="{% url 'teacher_classes' %}" 
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
+          <i class="fas fa-school text-gray-500 group-hover:text-blue-600 w-5"></i>
+          <span>Classes</span>
+        </a>
+        
+        
+        <a href="{% url 'settings' %}" 
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
+          <i class="fas fa-calendar-alt text-gray-500 group-hover:text-blue-600 w-5"></i>
+          <span>Timetable</span>
+        </a>
+        
+        <div class="pt-4 pb-2 px-3">
+          <p class="text-xs uppercase font-semibold text-gray-500">Administration</p>
+        </div>
+        
+        <a href="{% url 'teacher_attendance' %}" 
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
+          <i class="fas fa-user-check text-gray-500 group-hover:text-blue-600 w-5"></i>
+          <span>Attendance</span>
+        </a>
+        
+        <a href="{% url 'teacher_exam' %}" 
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
+          <i class="fas fa-clipboard-list text-gray-500 group-hover:text-blue-600 w-5"></i>
+          <span>Exams</span>
+        </a>
+        
+        <a href="{% url 'settings' %}" 
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
+          <i class="fas fa-book-reader text-gray-500 group-hover:text-blue-600 w-5"></i>
+          <span>Library</span>
+        </a>
+        
+        <a href="{% url 'settings' %}" 
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium group">
+          <i class="fas fa-chart-bar text-gray-500 group-hover:text-blue-600 w-5"></i>
+          <span>Reports</span>
+        </a>
+      </nav>
+      
+      <!-- Logout -->
+      <div class="px-6 py-4 border-t">
+        <a href="{% url 'logout' %}" 
+           class="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-red-600 text-white hover:bg-red-500 transition hover-lift">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="flex-1 overflow-auto">
+      <!-- Mobile Search Bar -->
+      <div class="md:hidden p-4 bg-white border-b">
+        <div class="relative">
+          <span class="absolute left-3 top-2.5 text-gray-400">
+            <i class="fas fa-search"></i>
+          </span>
+          <input 
+            type="text"
+            placeholder="Search students, classes..." 
+            class="border rounded-lg pl-10 pr-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+          />
+        </div>
+      </div>
+      
+      <!-- Page Content -->
+      <div class="p-4 md:p-6">
+        {% block teacher_dashboard %}{% endblock teacher_dashboard %}
+      </div>
+    </main>
+  </div>
+  
+  <!-- Footer -->
+  <footer class="bg-white border-t py-4 px-6 text-center text-gray-500 text-sm">
+    <p>© 2023 School Manager. All rights reserved.</p>
+    <div class="mt-1 flex justify-center gap-4">
+      <a href="#" class="hover:text-blue-600 transition">Privacy Policy</a>
+      <a href="#" class="hover:text-blue-600 transition">Terms of Service</a>
+      <a href="#" class="hover:text-blue-600 transition">Contact</a>
+    </div>
+  </footer>
+</div>
+
+<!-- Mobile Sidebar Toggle Script -->
+<script>
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const sidebar = document.getElementById('sidebar');
+  
+  mobileMenuBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('-translate-x-full');
+  });
+  
+  // Close sidebar when clicking outside on mobile
+  document.addEventListener('click', (event) => {
+    if (window.innerWidth < 768 && 
+        !sidebar.contains(event.target) && 
+        !mobileMenuBtn.contains(event.target)) {
+      sidebar.classList.add('-translate-x-full');
+    }
+  });
+  
+  // Profile dropdown toggle
+  const profileBtn = document.getElementById('profileBtn');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  
+  profileBtn.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('hidden');
+  });
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (event) => {
+    if (!profileBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
+      dropdownMenu.classList.add('hidden');
+    }
+  });
+</script>
+</body>
+</html>
